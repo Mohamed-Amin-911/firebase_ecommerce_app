@@ -35,12 +35,12 @@ class _TabsScreenState extends State<TabsScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,
-        children: [
+        children: const [
           HomeScreen(),
-          const ShopScreen(),
-          const BagScreen(),
-          const FavouritesScreen(),
-          const ProfileScreen(),
+          ShopScreen(),
+          BagScreen(),
+          FavouritesScreen(),
+          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: Container(

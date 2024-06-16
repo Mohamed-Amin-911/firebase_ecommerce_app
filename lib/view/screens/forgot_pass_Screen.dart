@@ -25,7 +25,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
   bool numberError = false;
 
   bool isFieldEmpty = true;
-  final _user = FirebaseAuth.instance;
+  // final _user = FirebaseAuth.instance;
   final _auth = Auth();
   @override
   void dispose() {
