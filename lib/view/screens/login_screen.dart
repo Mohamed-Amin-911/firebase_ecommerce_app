@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constants/icon_assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/model/Auth_class.dart';
 import 'package:ecommerce_app/model/secure_Storage_class.dart';
+import 'package:ecommerce_app/view/screens/forgot_pass_Screen.dart';
 import 'package:ecommerce_app/view/screens/signup_screen.dart';
 import 'package:ecommerce_app/view/screens/tabs_screen.dart';
 import 'package:ecommerce_app/view/widgets/red_button_widget.dart';
@@ -74,11 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
               validator: (value) {
                 if (nameError == false) {
                   setState(() {
-                    isFieldEmpty = false;
+                    isFieldEmpty = true;
                   });
                 }
                 setState(() {
-                  isFieldEmpty = true;
+                  isFieldEmpty = false;
                 });
                 // if (value == null ||
                 //     !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -109,11 +110,11 @@ class _LoginScreenState extends State<LoginScreen> {
               validator: (value) {
                 if (passError == false) {
                   setState(() {
-                    isFieldEmpty = false;
+                    isFieldEmpty = true;
                   });
                 }
                 setState(() {
-                  isFieldEmpty = true;
+                  isFieldEmpty = false;
                 });
                 // if (value == null || value.length < 8) {
                 //   setState(() {
@@ -160,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginScreen()));
+                          builder: (context) => const ForgotPassScreen()));
                 },
                 icon: SvgPicture.asset(
                   IconAssets.rightArrow.toString(),

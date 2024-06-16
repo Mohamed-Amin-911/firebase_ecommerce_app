@@ -23,7 +23,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool validator = true;
   bool nameError = false;
-  bool numberError = false;
+  bool emailError = false;
   bool passError = false;
   bool isFieldEmpty = true;
   @override
@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
             TxtFieldWidget(
               controller: _emailController,
               isFieldEmpty: isFieldEmpty,
-              error: numberError,
+              error: emailError,
               label: "Email",
               obscureText: false,
               keyboardType: TextInputType.emailAddress,
@@ -107,12 +107,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                         .hasMatch(value)) {
                   setState(() {
-                    numberError = true;
+                    emailError = true;
                   });
                   return 'Not a valid email address. Should be your@email.com';
                 }
                 setState(() {
-                  numberError = false;
+                  emailError = false;
                 });
                 return null;
               },

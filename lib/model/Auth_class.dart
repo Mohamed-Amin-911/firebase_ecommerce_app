@@ -13,6 +13,15 @@ class Auth {
     }
   }
 
+//reset password method
+  Future<void> sendPasswordReset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
 //signup method
   Future<User?> signUpWithEmailAndPassword(
       String email, String password) async {
