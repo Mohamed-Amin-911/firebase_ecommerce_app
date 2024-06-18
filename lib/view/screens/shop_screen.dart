@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/view/widgets/categories_tabs_widget.dart';
+import 'package:ecommerce_app/view/widgets/summer_Sale_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,29 +39,9 @@ class ShopScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TabBar(
-              tabAlignment: TabAlignment.center,
-              indicatorWeight: 3,
-              labelPadding: EdgeInsets.symmetric(horizontal: 32.w),
-              labelStyle: appStyle(
-                  fw: FontWeight.w500, size: 16.sp, color: kColor.textColor),
-              isScrollable: true,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorColor: kColor.redColor,
-              labelColor: kColor.textColor,
-              unselectedLabelColor: kColor.textColor,
-              tabs: const <Widget>[
-                Tab(
-                  text: "Women",
-                ),
-                Tab(
-                  text: "Men",
-                ),
-                Tab(
-                  text: "Kids",
-                ),
-              ],
-            ),
+            const CategoriesTabsWidget(),
+            SizedBox(height: 16.h),
+            const SummerSaleWidget()
           ],
         ),
       ),
