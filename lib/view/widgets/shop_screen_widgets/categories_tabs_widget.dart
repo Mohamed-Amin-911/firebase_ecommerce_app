@@ -6,11 +6,13 @@ import 'package:ecommerce_app/constants/colors.dart';
 class CategoriesTabsWidget extends StatelessWidget {
   const CategoriesTabsWidget({
     super.key,
+    required this.tabController,
   });
-
+  final TabController tabController;
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      controller: tabController,
       tabAlignment: TabAlignment.center,
       indicatorWeight: 3,
       labelPadding: EdgeInsets.symmetric(horizontal: 32.w),

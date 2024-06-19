@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
-import 'package:ecommerce_app/view/widgets/new_item_card.dart';
+import 'package:ecommerce_app/view/widgets/home_screen_widgets/new_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/constants/colors.dart';

@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/view/widgets/fashion_sale_widget.dart';
-import 'package:ecommerce_app/view/widgets/new_items_widget.dart';
+import 'package:ecommerce_app/view/widgets/home_screen_widgets/fashion_sale_widget.dart';
+import 'package:ecommerce_app/view/widgets/home_screen_widgets/new_items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const FashionSaleWidget(),
-                SizedBox(height: 33.h),
+                SizedBox(height: 5.h),
                 const NewItemsWidget(),
                 SizedBox(height: 100.h),
               ],
