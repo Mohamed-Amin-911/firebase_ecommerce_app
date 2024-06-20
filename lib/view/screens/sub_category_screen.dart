@@ -1,10 +1,9 @@
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/view/screens/products_screen.dart';
 import 'package:ecommerce_app/view/widgets/red_button_widget.dart';
 import 'package:ecommerce_app/view/widgets/shop_screen_widgets/sub_category_item_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubCategoryScreen extends StatelessWidget {
@@ -55,7 +54,15 @@ class SubCategoryScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SubCategoryItemCard(name: "Tops", function: () {}),
+                  SubCategoryItemCard(
+                      name: "Tops",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductsScreen(),
+                            ));
+                      }),
                   SubCategoryItemCard(
                       name: "Shirts & Blouses", function: () {}),
                   SubCategoryItemCard(

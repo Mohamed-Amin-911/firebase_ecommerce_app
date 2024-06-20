@@ -18,19 +18,19 @@ class KidsCategoriesList extends StatelessWidget {
           child: Column(
             children: [
               CategoryCardWidget(
-                image: KImageAssets.womanNew,
+                image: KImageAssets.kidsNew,
                 name: "New",
               ),
               CategoryCardWidget(
-                image: KImageAssets.womanClothes,
+                image: KImageAssets.kidsClothes,
                 name: "Clothes",
               ),
               CategoryCardWidget(
-                image: KImageAssets.womanShoes,
+                image: KImageAssets.kidsShoes,
                 name: "Shoes",
               ),
               CategoryCardWidget(
-                image: KImageAssets.womanAccesories,
+                image: KImageAssets.kidsAccesories,
                 name: "Accesories",
               ),
             ],

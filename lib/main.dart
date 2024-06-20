@@ -35,6 +35,12 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'eCommerce app',
               theme: ThemeData(
+                chipTheme: ChipThemeData(
+                    labelStyle: TextStyle(
+                        color: kColor.whiteColor,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "Metropolis",
+                        fontSize: 14.sp)),
                 inputDecorationTheme: const InputDecorationTheme(
                   labelStyle: TextStyle(color: kColor.text2Color),
                   floatingLabelStyle: TextStyle(color: kColor.text2Color),
