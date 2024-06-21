@@ -17,10 +17,9 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
   void initState() {
+    super.initState();
     Provider.of<RetrieveProductProvider>(context, listen: false)
         .fetchProducts();
-
-    super.initState();
   }
 
   @override
@@ -106,7 +105,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   image: product.image,
                                   isFavourited: false,
                                   rating: product.rating,
-                                  reviews: product.reviews.length,
+                                  reviews: product.reviews[0].substring(1,
+                                              product.reviews[0].length - 1) ==
+                                          ""
+                                      ? 0
+                                      : product.reviews.length,
                                   name: product.name,
                                   price: product.price.toString(),
                                   store: product.store);

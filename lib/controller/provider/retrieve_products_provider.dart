@@ -1,66 +1,6 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:ecommerce_app/model/product_model.dart';
-// import 'package:flutter/material.dart';
-
-// // Assuming your product classes (Gender, Category, SubCategory, Size, Product) are defined elsewhere
-
-// class RetrieveProductProvider extends ChangeNotifier {
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   List<Product> _products = [];
-
-//   List<Product> get products => _products;
-
-//   Future<void> fetchProducts() async {
-//     try {
-//       final collectionRef = _firestore.collection('products');
-//       final querySnapshot = await collectionRef.get();
-
-//       final products = querySnapshot.docs.map((doc) {
-//         final data = doc.data();
-//         return Product(
-//           id: data['id'],
-//           name: data['name'],
-//           gender: Gender.values.firstWhere(
-//               (g) => g.toString().split('.').last == data['gender']),
-//           image: data['image'],
-//           rating: data['rating'],
-//           category: Category.values.firstWhere(
-//               (c) => c.toString().split('.').last == data['category']),
-//           subcategory: SubCategory.values.firstWhere(
-//               (s) => s.toString().split('.').last == data['subcategory']),
-//           price: data['price'],
-//           store: data['store'],
-//           isDiscount: data['isDiscount'],
-//           discountAmount: data['discountAmount'],
-//           sizes: (data['sizes'] as String)
-//               .split(',')
-//               .map((size) => Size.values
-//                   .firstWhere((s) => s.toString().split('.').last == size))
-//               .toList(),
-//           colors: (data['colors'] as List<dynamic>)
-//               .cast<String>(), // Ensure colors are a list of strings
-//           reviews: (data['reviews'] as List<dynamic>)
-//               .cast<String>(), // Ensure reviews are a list of strings
-//         );
-//       }).toList();
-
-//       _products = products;
-//       notifyListeners(); // Notify UI about product changes
-//     } on FirebaseException catch (error) {
-//       debugPrint('Firebase error fetching products: $error');
-//       // Optionally, show a snackbar or dialog to the user with an error message
-//     } catch (error) {
-//       debugPrint('Unexpected error fetching products: $error');
-//       // Optionally, show a generic error message to the user
-//     }
-//   }
-// }
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
-
-// Assuming your product classes (Gender, Category, SubCategory, Size, Product) are defined elsewhere
 
 class RetrieveProductProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -97,9 +37,11 @@ class RetrieveProductProvider extends ChangeNotifier {
           reviews: data['reviews'].toString().split(',').toList(),
         );
       }).toList();
-
+      print(products[1]
+          .reviews[0]
+          .substring(1, products[1].reviews[0].length - 1));
       _products = products;
-      notifyListeners();
+
       _isLoading = false;
       notifyListeners(); // Notify UI about product changes and loading completion
     } on FirebaseException catch (error) {
