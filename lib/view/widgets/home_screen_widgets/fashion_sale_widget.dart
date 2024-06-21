@@ -1,14 +1,22 @@
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/upload_products_provider.dart';
+import 'package:ecommerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 
-class FashionSaleWidget extends StatelessWidget {
+class FashionSaleWidget extends StatefulWidget {
   const FashionSaleWidget({
     super.key,
   });
 
+  @override
+  State<FashionSaleWidget> createState() => _FashionSaleWidgetState();
+}
+
+class _FashionSaleWidgetState extends State<FashionSaleWidget> {
+  final UploadProductProvider productProvider = UploadProductProvider();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -36,7 +44,9 @@ class FashionSaleWidget extends StatelessWidget {
               width: 160.w,
               height: 36.h,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await productProvider.uploadProducts(products);
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kColor.redColor, elevation: 0),
                 child: Text(
