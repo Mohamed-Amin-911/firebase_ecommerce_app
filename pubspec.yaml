@@ -41,6 +41,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   shared_preferences: ^2.2.3
   animated_rating_stars: ^1.0.1
+  custom_radio_grouped_button: ^2.2.1
   flutter_rating_bar: ^4.0.1
   firebase_auth: ^5.1.0
   firebase_core: ^3.1.0

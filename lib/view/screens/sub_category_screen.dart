@@ -7,8 +7,9 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubCategoryScreen extends StatelessWidget {
-  const SubCategoryScreen({super.key});
-
+  const SubCategoryScreen({super.key, required this.cat, required this.gender});
+  final String cat;
+  final String gender;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,21 +61,143 @@ class SubCategoryScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProductsScreen(),
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "tops",
+                              ),
                             ));
                       }),
                   SubCategoryItemCard(
-                      name: "Shirts & Blouses", function: () {}),
+                      name: "Shirts & Blouses",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "shirtsAndBlouses",
+                              ),
+                            ));
+                      }),
                   SubCategoryItemCard(
-                      name: "Cardigans & Sweaters", function: () {}),
-                  SubCategoryItemCard(name: "Knitwear", function: () {}),
-                  SubCategoryItemCard(name: "Blazers", function: () {}),
-                  SubCategoryItemCard(name: "Outerwear", function: () {}),
-                  SubCategoryItemCard(name: "Pants", function: () {}),
-                  SubCategoryItemCard(name: "Jeans", function: () {}),
-                  SubCategoryItemCard(name: "Shorts", function: () {}),
-                  SubCategoryItemCard(name: "Skirts", function: () {}),
-                  SubCategoryItemCard(name: "Dresses", function: () {}),
+                      name: "Cardigans & Sweaters",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "cardigansAndSweaters",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Knitwear",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Knitwear",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Blazers",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Blazers",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Outerwear",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Outerwear",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Pants",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Pants",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Jeans",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Jeans",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Shorts",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Shorts",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Skirts",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Skirts",
+                              ),
+                            ));
+                      }),
+                  SubCategoryItemCard(
+                      name: "Dresses",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductsScreen(
+                                cat: cat,
+                                gender: gender,
+                                subcat: "Dresses",
+                              ),
+                            ));
+                      }),
                 ],
               ),
             ),

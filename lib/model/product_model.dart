@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum Gender { women, men, kids }
 
 enum Category { neww, clothes, shoes, accesories }
@@ -86,145 +88,60 @@ class Product {
       };
 }
 
-List<Product> products = [
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-Shirt SPANISH",
-    price: 9,
-    rating: 4,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: [],
-    store: "Mango",
-  ),
-  Product(
-    category: Category.neww.name,
-    colors: ["0xffDB3022"],
-    gender: Gender.women.name,
-    image:
-        "https://images.unsplash.com/photo-1718809070588-bc92009238b3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "T-ShirtSPANISsssssH",
-    price: 99,
-    rating: 1,
-    sizes: [Size.M.name, Size.L.name, Size.XL.name],
-    subcategory: SubCategory.tops.name,
-    reviews: ["zzzzzzzzzzz"],
-    store: "Mazzzzzzzngo",
-  ),
-];
+List<Product> generateProducts() {
+  final List<String> names = [
+    "T-Shirt SPANISH",
+    "Cool Sneakers",
+    "Elegant Blazer",
+    "Summer Dress",
+    "Casual Jeans",
+    // Add more unique product names
+  ];
+
+  final List<String> images = [
+    "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://plus.unsplash.com/premium_photo-1688821126709-895e6465b9a2?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "https://images.unsplash.com/photo-1517942420142-6a296f9ee4b1?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    // Add more unique image URLs
+  ];
+
+  final List<String> stores = [
+    "Mango",
+    "Zara",
+    "H&M",
+    "Uniqlo",
+    "Gap",
+    // Add more store names
+  ];
+
+  final Random random = Random();
+
+  List<Product> products = List.generate(50, (index) {
+    return Product(
+      category: Category.values[random.nextInt(Category.values.length)].name,
+      colors: [
+        "0xffDB3022",
+        "0xff000000",
+        "0xffffffff"
+      ], // Add more colors if needed
+      gender: Gender.values[random.nextInt(Gender.values.length)].name,
+      image: images[random.nextInt(images.length)],
+      name: names[random.nextInt(names.length)],
+      price: 5 + random.nextInt(100).toDouble(), // Prices between 5 and 104
+      rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
+      sizes: List<String>.from(Size.values.map((size) => size.name).toList()
+        ..shuffle()
+        ..take(random.nextInt(Size.values.length) + 1)),
+      subcategory:
+          SubCategory.values[random.nextInt(SubCategory.values.length)].name,
+      reviews: [], // Add review texts if needed
+      store: stores[random.nextInt(stores.length)],
+    );
+  });
+
+  return products;
+}
+
+List<Product> products = generateProducts();

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 
-class FiltersRowWidget extends StatelessWidget {
-  const FiltersRowWidget({
-    super.key,
-  });
+class FiltersRowWidget extends StatefulWidget {
+  const FiltersRowWidget({super.key});
 
+  @override
+  State<FiltersRowWidget> createState() => _FiltersRowWidgetState();
+}
+
+class _FiltersRowWidgetState extends State<FiltersRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +18,9 @@ class FiltersRowWidget extends StatelessWidget {
       children: [
         Row(children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              setState(() {});
+            },
             child: const Icon(
               Icons.filter_list_rounded,
               color: kColor.textColor,

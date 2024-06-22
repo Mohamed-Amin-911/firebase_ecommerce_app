@@ -25,7 +25,8 @@ class WomenCategoriesList extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SubCategoryScreen()));
+                          builder: (context) => const SubCategoryScreen(
+                              cat: "neww", gender: "women")));
                 },
               ),
               CategoryCardWidget(
@@ -35,16 +36,31 @@ class WomenCategoriesList extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SubCategoryScreen()));
+                          builder: (context) => const SubCategoryScreen(
+                              cat: "clothes", gender: "women")));
                 },
               ),
-              const CategoryCardWidget(
+              CategoryCardWidget(
                 image: KImageAssets.womanShoes,
                 name: "Shoes",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SubCategoryScreen(
+                              cat: "shoes", gender: "women")));
+                },
               ),
-              const CategoryCardWidget(
+              CategoryCardWidget(
                 image: KImageAssets.womanAccesories,
                 name: "Accesories",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SubCategoryScreen(
+                              cat: "accesories", gender: "women")));
+                },
               ),
             ],
           ),
