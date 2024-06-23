@@ -1,8 +1,8 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/filter_screen.dart';
-import 'package:ecommerce_app/view/widgets/products_screen_widgets/product_card_widget.dart';
+import 'package:ecommerce_app/view/widgets/products_screen_widgets/filter_widget.dart';
+import 'package:ecommerce_app/view/widgets/products_screen_widgets/products_display_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/search_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/tags_list_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/title_widget.dart';
@@ -61,6 +61,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ? Container()
               : IconButton(
                   onPressed: () {
+                    Provider.of<RetrieveProductProvider>(context, listen: false)
+                        .setSearchedChar("");
+                    Provider.of<RetrieveProductProvider>(context, listen: false)
+                        .setMaxPrice(1500);
+                    Provider.of<RetrieveProductProvider>(context, listen: false)
+                        .setMinPrice(10);
                     Navigator.pop(context);
                   },
                   icon: const Icon(
@@ -103,38 +109,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   children: [
                     const TagsListWidget(),
                     SizedBox(height: 20.h),
+                    //filters row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(children: [
-                          InkWell(
-                            onTap: () {
-                              Provider.of<RetrieveProductProvider>(context,
-                                      listen: false)
-                                  .fetchProducts();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => FilterScreen(
-                                      cat: widget.cat,
-                                      gender: widget.gender,
-                                      subcat: widget.subcat,
-                                    ),
-                                  ));
-                            },
-                            child: const Icon(
-                              Icons.filter_list_rounded,
-                              color: kColor.textColor,
-                            ),
-                          ),
-                          Text(
-                            " Filters",
-                            style: appStyle(
-                                fw: FontWeight.w500,
-                                size: 14.sp,
-                                color: kColor.textColor),
-                          ),
-                        ]),
+                        FiltersWidget(widget: widget),
                         Row(children: [
                           InkWell(
                             onTap: () {
@@ -205,75 +184,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ],
                         ))
                       : Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 16,
-                                    mainAxisSpacing: 16,
-                                    childAspectRatio: 2 / 4),
-                            itemCount: Provider.of<RetrieveProductProvider>(context, listen: true)
-                                .products
-                                .where((e) =>
-                                    e.gender == widget.gender &&
-                                    e.category == widget.cat &&
-                                    e.subcategory == widget.subcat)
-                                .toList()
-                                .where((product) =>
-                                    product.name.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
-                                    product.category.toLowerCase().contains(
-                                        Provider.of<RetrieveProductProvider>(context, listen: true)
-                                            .searchedChar
-                                            .toLowerCase()) ||
-                                    product.subcategory.toLowerCase().contains(
-                                        Provider.of<RetrieveProductProvider>(context,
-                                                listen: true)
-                                            .searchedChar
-                                            .toLowerCase()) ||
-                                    product.gender
-                                        .toLowerCase()
-                                        .contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
-                                    product.store.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()))
-                                .toList()
-                                .length,
-                            itemBuilder: (context, index) {
-                              final product = Provider.of<RetrieveProductProvider>(context, listen: true)
-                                  .products
-                                  .where((e) =>
-                                      e.gender == widget.gender &&
-                                      e.category == widget.cat &&
-                                      e.subcategory == widget.subcat)
-                                  .toList()
-                                  .where((product) =>
-                                      product.name.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
-                                      product.category.toLowerCase().contains(
-                                          Provider.of<RetrieveProductProvider>(context, listen: true)
-                                              .searchedChar
-                                              .toLowerCase()) ||
-                                      product.subcategory.toLowerCase().contains(
-                                          Provider.of<RetrieveProductProvider>(context,
-                                                  listen: true)
-                                              .searchedChar
-                                              .toLowerCase()) ||
-                                      product.gender
-                                          .toLowerCase()
-                                          .contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
-                                      product.store.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()))
-                                  .toList()[index];
-                              return ProductCard(
-                                  image: product.image,
-                                  isFavourited: false,
-                                  rating: product.rating,
-                                  reviews: product.reviews[0].substring(1,
-                                              product.reviews[0].length - 1) ==
-                                          ""
-                                      ? 0
-                                      : product.reviews.length,
-                                  name: product.name,
-                                  price: product.price.toString(),
-                                  store: product.store);
-                            },
-                          ),
+                          child: ProductsDisplayWidget(widget: widget),
                         ),
             ],
           ),

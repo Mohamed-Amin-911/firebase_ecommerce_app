@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class RetrieveProductProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<Product> _products = [];
+  List<Product> get products => _products;
   bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
   String _searchedChar = "";
   String get searchedChar => _searchedChar;
@@ -14,13 +16,11 @@ class RetrieveProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Product> get products => _products;
-  bool get isLoading => _isLoading;
-  List<String> _selectedColors = [];
+  final List<String> _selectedColors = [];
+  List<String> get selectedColors => _selectedColors;
+
   double _minPrice = 10;
   double _maxPrice = 1500;
-
-  List<String> get selectedColors => _selectedColors;
   double get minPrice => _minPrice;
   double get maxPrice => _maxPrice;
 

@@ -146,7 +146,9 @@ class _FilterScreenState extends State<FilterScreen> {
                 width: 160.w,
                 height: 36.w,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: kColor.whiteColor,
