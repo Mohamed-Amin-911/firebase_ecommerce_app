@@ -37,9 +37,7 @@ class RetrieveProductProvider extends ChangeNotifier {
           reviews: data['reviews'].toString().split(',').toList(),
         );
       }).toList();
-      print(products[1]
-          .reviews[0]
-          .substring(1, products[1].reviews[0].length - 1));
+
       _products = products;
 
       _isLoading = false;
@@ -65,5 +63,31 @@ class RetrieveProductProvider extends ChangeNotifier {
       //       ),
       //     );
     }
+  }
+
+  void sortByPriceAscending() {
+    _products.sort((a, b) => a.price.compareTo(b.price));
+    notifyListeners();
+  }
+
+  void sortByPriceDescending() {
+    _products.sort((a, b) => b.price.compareTo(a.price));
+    notifyListeners();
+  }
+
+  searchProducts(String searchTerm) {
+    final lowercaseSearchTerm =
+        searchTerm.toLowerCase(); // Make search case-insensitive
+    final filteredList = products
+        .where((product) =>
+            product.name.toLowerCase().contains(lowercaseSearchTerm) ||
+            product.category.toLowerCase().contains(lowercaseSearchTerm) ||
+            product.subcategory.toLowerCase().contains(lowercaseSearchTerm) ||
+            product.gender.toLowerCase().contains(lowercaseSearchTerm) ||
+            product.store.toLowerCase().contains(lowercaseSearchTerm))
+        .toList();
+    _products.clear();
+    _products.addAll(filteredList);
+    notifyListeners();
   }
 }

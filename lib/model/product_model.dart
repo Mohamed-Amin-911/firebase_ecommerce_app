@@ -115,21 +115,26 @@ List<Product> generateProducts() {
     "Gap",
     // Add more store names
   ];
-
+  final List<String> colors = [
+    "0xff020202",
+    "0xffF6F6F6",
+    "0xffB82222",
+    "0xffBEA9A9",
+    "0xffE2BB8D",
+    "0xff151867",
+  ];
   final Random random = Random();
 
-  List<Product> products = List.generate(50, (index) {
+  List<Product> products = List.generate(100, (index) {
     return Product(
       category: Category.values[random.nextInt(Category.values.length)].name,
       colors: [
-        "0xffDB3022",
-        "0xff000000",
-        "0xffffffff"
+        colors[random.nextInt(colors.length)]
       ], // Add more colors if needed
       gender: Gender.values[random.nextInt(Gender.values.length)].name,
       image: images[random.nextInt(images.length)],
       name: names[random.nextInt(names.length)],
-      price: 5 + random.nextInt(100).toDouble(), // Prices between 5 and 104
+      price: 5 + random.nextInt(1000).toDouble(), // Prices between 5 and 104
       rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
       sizes: List<String>.from(Size.values.map((size) => size.name).toList()
         ..shuffle()

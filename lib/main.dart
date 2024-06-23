@@ -44,9 +44,9 @@ class MyApp extends StatelessWidget {
                 labelStyle: TextStyle(color: kColor.text2Color),
                 floatingLabelStyle: TextStyle(color: kColor.text2Color),
               ),
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: kColor.textColor,
-              ),
+              // colorScheme: ColorScheme.fromSeed(
+              //   seedColor: kColor.whiteColor,
+              // ),
               useMaterial3: true,
             ),
             home: const MainScreen(),

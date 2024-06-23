@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/product_card_widget.dart';
+import 'package:ecommerce_app/view/widgets/products_screen_widgets/search_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/tags_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
@@ -22,9 +23,11 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
+  final searchController = TextEditingController();
   bool isPriceLowToHight = false;
   bool isPriceHighToLow = false;
   late List<Product> sortedProducts;
+  bool isSearching = false;
   @override
   void initState() {
     super.initState();
@@ -44,34 +47,45 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: kColor.textColor,
-              )),
+          leading: isSearching
+              ? Container()
+              : IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: kColor.textColor,
+                  )),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    isSearching = !isSearching;
+                  });
+                },
                 icon: const Icon(
                   Icons.search_rounded,
                   color: kColor.textColor,
                 ))
           ],
           centerTitle: true,
-          title: Text(
-            "${widget.gender[0].toUpperCase() + widget.gender.substring(1)}'s ${widget.subcat == "cardigansAndSweaters" ? "Cardigans & Sweaters" : widget.subcat == "shirtsAndBlouses" ? "Shirts & Blouses" : widget.subcat}",
-            style: appStyle(
-                fw: FontWeight.w500, size: 18.sp, color: kColor.textColor),
-          ),
+          title: isSearching
+              ? SearchWidget(searchController: searchController)
+              : Text(
+                  "${widget.gender[0].toUpperCase() + widget.gender.substring(1)}'s ${widget.subcat == "cardigansAndSweaters" ? "Cardigans & Sweaters" : widget.subcat == "shirtsAndBlouses" ? "Shirts & Blouses" : widget.subcat}",
+                  style: appStyle(
+                      fw: FontWeight.w500,
+                      size: 18.sp,
+                      color: kColor.textColor),
+                ),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //tags and filters
               Container(
                 decoration: const BoxDecoration(boxShadow: [
                   BoxShadow(
@@ -107,7 +121,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         Row(children: [
                           InkWell(
                             onTap: () {
-                              setState(() {});
+                              setState(() {
+                                filter();
+                              });
                             },
                             child: const Icon(
                               Icons.swap_vert,
@@ -115,7 +131,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             ),
                           ),
                           Text(
-                            " Price: lowest to high",
+                            isPriceLowToHight && !isPriceHighToLow
+                                ? " Price: lowest to high"
+                                : !isPriceLowToHight && isPriceHighToLow
+                                    ? " Price: highest to low"
+                                    : " sort by price",
                             style: appStyle(
                                 fw: FontWeight.w500,
                                 size: 14.sp,
@@ -135,7 +155,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 19.h),
               Provider.of<RetrieveProductProvider>(context, listen: true)
                       .isLoading
                   ? Center(
@@ -159,7 +179,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           children: [
                             SizedBox(height: 160.h),
                             Text(
-                              'error fetching products',
+                              'No products',
                               style: appStyle(
                                   fw: FontWeight.bold,
                                   size: 20.sp,
@@ -272,6 +292,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 setState(() {
                                   isPriceLowToHight = true;
                                   isPriceHighToLow = false;
+                                  Provider.of<RetrieveProductProvider>(context,
+                                          listen: false)
+                                      .sortByPriceAscending();
                                 });
                               },
                               child: Text(
@@ -298,6 +321,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 setState(() {
                                   isPriceHighToLow = true;
                                   isPriceLowToHight = false;
+                                  Provider.of<RetrieveProductProvider>(context,
+                                          listen: false)
+                                      .sortByPriceDescending();
                                 });
                               },
                               child: Text(
