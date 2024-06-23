@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:provider/provider.dart';
 
-class SearchWidget extends StatelessWidget {
+class SearchWidget extends StatefulWidget {
   const SearchWidget({
     super.key,
     required this.searchController,
@@ -13,9 +13,14 @@ class SearchWidget extends StatelessWidget {
   final TextEditingController searchController;
 
   @override
+  State<SearchWidget> createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
+  @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: searchController,
+      controller: widget.searchController,
       cursorColor: kColor.textColor,
       decoration: InputDecoration(
         hintText: 'search for a product',
@@ -25,11 +30,15 @@ class SearchWidget extends StatelessWidget {
       ),
       style: appStyle(color: kColor.textColor, size: 18, fw: FontWeight.w500),
       onChanged: (searchedCharacter) {
-        searchedCharacter == ""
-            ? Provider.of<RetrieveProductProvider>(context, listen: false)
-                .fetchProducts()
-            : Provider.of<RetrieveProductProvider>(context, listen: false)
-                .searchProducts(searchedCharacter);
+        setState(() {
+          // searchedCharacter == ""
+          //     ? Provider.of<RetrieveProductProvider>(context, listen: false)
+          //         .fetchProducts()
+          //     : Provider.of<RetrieveProductProvider>(context, listen: false)
+          //         .searchProducts(searchedCharacter);
+          Provider.of<RetrieveProductProvider>(context, listen: false)
+              .setSearchedChar(searchedCharacter);
+        });
       },
     );
   }

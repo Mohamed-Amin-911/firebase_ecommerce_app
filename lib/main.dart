@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
               // colorScheme: ColorScheme.fromSeed(
               //   seedColor: kColor.whiteColor,
               // ),
-              useMaterial3: true,
+              useMaterial3: false,
             ),
             home: const MainScreen(),
           );

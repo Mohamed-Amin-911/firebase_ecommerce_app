@@ -7,13 +7,47 @@ class RetrieveProductProvider extends ChangeNotifier {
   List<Product> _products = [];
   bool _isLoading = false;
 
+  String _searchedChar = "";
+  String get searchedChar => _searchedChar;
+  void setSearchedChar(String char) {
+    _searchedChar = char;
+    notifyListeners();
+  }
+
   List<Product> get products => _products;
   bool get isLoading => _isLoading;
+  List<String> _selectedColors = [];
+  double _minPrice = 10;
+  double _maxPrice = 1500;
+
+  List<String> get selectedColors => _selectedColors;
+  double get minPrice => _minPrice;
+  double get maxPrice => _maxPrice;
+
+  void setSelectedColors(String color) {
+    _selectedColors.add(color);
+    notifyListeners(); // Notify listeners of changes
+  }
+
+  void removeSelectedColors(String color) {
+    _selectedColors.remove(color);
+    notifyListeners(); // Notify listeners of changes
+  }
+
+  void setMinPrice(double price) {
+    _minPrice = price;
+    notifyListeners();
+  }
+
+  void setMaxPrice(double price) {
+    _maxPrice = price;
+    notifyListeners();
+  }
 
   Future<void> fetchProducts() async {
     try {
       _isLoading = true;
-      notifyListeners(); // Notify UI about loading start
+      notifyListeners();
 
       final collectionRef = _firestore.collection('products');
       final querySnapshot = await collectionRef.get();
@@ -37,14 +71,17 @@ class RetrieveProductProvider extends ChangeNotifier {
           reviews: data['reviews'].toString().split(',').toList(),
         );
       }).toList();
+      notifyListeners();
 
       _products = products;
 
+      notifyListeners();
+
       _isLoading = false;
-      notifyListeners(); // Notify UI about product changes and loading completion
+      notifyListeners();
     } on FirebaseException catch (error) {
       _isLoading = false;
-      notifyListeners(); // Notify UI about error and loading completion
+      notifyListeners();
       debugPrint('Firebase error fetching products: $error');
       // ScaffoldMessenger.of(navigatorKey.currentContext!)
       //     .showSnackBar( // Show snackbar using navigator key
@@ -54,7 +91,7 @@ class RetrieveProductProvider extends ChangeNotifier {
       //     );
     } catch (error) {
       _isLoading = false;
-      notifyListeners(); // Notify UI about error and loading completion
+      notifyListeners();
       debugPrint('Unexpected error fetching products: $error');
       // ScaffoldMessenger.of(navigatorKey.currentContext!)
       //     .showSnackBar( // Show snackbar using navigator key
@@ -88,6 +125,20 @@ class RetrieveProductProvider extends ChangeNotifier {
         .toList();
     _products.clear();
     _products.addAll(filteredList);
+    notifyListeners();
+  }
+
+  void filterProducts() {
+    List<Product> filteredProducts = _products
+        .where((product) =>
+            (_selectedColors.isEmpty ||
+                _selectedColors
+                    .any((color) => product.colors.contains(color))) &&
+            product.price >= _minPrice &&
+            product.price <= _maxPrice)
+        .toList();
+    _products.clear();
+    _products.addAll(filteredProducts);
     notifyListeners();
   }
 }

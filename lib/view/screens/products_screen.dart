@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
+import 'package:ecommerce_app/view/screens/filter_screen.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/product_card_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/search_widget.dart';
 import 'package:ecommerce_app/view/widgets/products_screen_widgets/tags_list_widget.dart';
+import 'package:ecommerce_app/view/widgets/products_screen_widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,9 +46,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: kColor.whiteColor,
+          elevation: 0,
           leading: isSearching
               ? Container()
               : IconButton(
@@ -72,13 +82,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           centerTitle: true,
           title: isSearching
               ? SearchWidget(searchController: searchController)
-              : Text(
-                  "${widget.gender[0].toUpperCase() + widget.gender.substring(1)}'s ${widget.subcat == "cardigansAndSweaters" ? "Cardigans & Sweaters" : widget.subcat == "shirtsAndBlouses" ? "Shirts & Blouses" : widget.subcat}",
-                  style: appStyle(
-                      fw: FontWeight.w500,
-                      size: 18.sp,
-                      color: kColor.textColor),
-                ),
+              : ProductsScreenTitle(widget: widget),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -104,7 +108,20 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       children: [
                         Row(children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Provider.of<RetrieveProductProvider>(context,
+                                      listen: false)
+                                  .fetchProducts();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FilterScreen(
+                                      cat: widget.cat,
+                                      gender: widget.gender,
+                                      subcat: widget.subcat,
+                                    ),
+                                  ));
+                            },
                             child: const Icon(
                               Icons.filter_list_rounded,
                               color: kColor.textColor,
@@ -122,7 +139,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                filter();
+                                sort();
                               });
                             },
                             child: const Icon(
@@ -195,25 +212,54 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                     crossAxisSpacing: 16,
                                     mainAxisSpacing: 16,
                                     childAspectRatio: 2 / 4),
-                            itemCount: Provider.of<RetrieveProductProvider>(
-                                    context,
-                                    listen: true)
+                            itemCount: Provider.of<RetrieveProductProvider>(context, listen: true)
                                 .products
                                 .where((e) =>
                                     e.gender == widget.gender &&
                                     e.category == widget.cat &&
                                     e.subcategory == widget.subcat)
+                                .toList()
+                                .where((product) =>
+                                    product.name.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
+                                    product.category.toLowerCase().contains(
+                                        Provider.of<RetrieveProductProvider>(context, listen: true)
+                                            .searchedChar
+                                            .toLowerCase()) ||
+                                    product.subcategory.toLowerCase().contains(
+                                        Provider.of<RetrieveProductProvider>(context,
+                                                listen: true)
+                                            .searchedChar
+                                            .toLowerCase()) ||
+                                    product.gender
+                                        .toLowerCase()
+                                        .contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
+                                    product.store.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()))
+                                .toList()
                                 .length,
                             itemBuilder: (context, index) {
-                              final product =
-                                  Provider.of<RetrieveProductProvider>(context,
-                                          listen: true)
-                                      .products
-                                      .where((e) =>
-                                          e.gender == widget.gender &&
-                                          e.category == widget.cat &&
-                                          e.subcategory == widget.subcat)
-                                      .toList()[index];
+                              final product = Provider.of<RetrieveProductProvider>(context, listen: true)
+                                  .products
+                                  .where((e) =>
+                                      e.gender == widget.gender &&
+                                      e.category == widget.cat &&
+                                      e.subcategory == widget.subcat)
+                                  .toList()
+                                  .where((product) =>
+                                      product.name.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
+                                      product.category.toLowerCase().contains(
+                                          Provider.of<RetrieveProductProvider>(context, listen: true)
+                                              .searchedChar
+                                              .toLowerCase()) ||
+                                      product.subcategory.toLowerCase().contains(
+                                          Provider.of<RetrieveProductProvider>(context,
+                                                  listen: true)
+                                              .searchedChar
+                                              .toLowerCase()) ||
+                                      product.gender
+                                          .toLowerCase()
+                                          .contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()) ||
+                                      product.store.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()))
+                                  .toList()[index];
                               return ProductCard(
                                   image: product.image,
                                   isFavourited: false,
@@ -236,7 +282,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
 //================================================================//================================================================
 //Filter method
-  Future<dynamic> filter() {
+  Future<dynamic> sort() {
     return showModalBottomSheet(
       useRootNavigator: true,
       isScrollControlled: true,

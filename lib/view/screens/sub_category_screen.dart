@@ -14,6 +14,8 @@ class SubCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kColor.whiteColor,
+        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
