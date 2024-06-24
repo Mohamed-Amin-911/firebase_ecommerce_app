@@ -6,14 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LogOutButton extends StatelessWidget {
+class LogOutButton extends StatefulWidget {
   const LogOutButton({
     super.key,
-    required Auth auth,
-  }) : _auth = auth;
+  });
 
-  final Auth _auth;
+  @override
+  State<LogOutButton> createState() => _LogOutButtonState();
+}
 
+class _LogOutButtonState extends State<LogOutButton> {
+  final _auth = Auth();
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

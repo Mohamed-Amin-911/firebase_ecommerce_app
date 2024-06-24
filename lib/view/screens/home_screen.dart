@@ -9,21 +9,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height.h,
-          ),
-          child: IntrinsicHeight(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const FashionSaleWidget(),
-                SizedBox(height: 5.h),
-                const NewItemsWidget(),
-                SizedBox(height: 100.h),
-              ],
-            ),
+      body: Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const FashionSaleWidget(),
+              SizedBox(height: 5.h),
+              const NewItemsWidget(),
+              SizedBox(height: 100.h),
+            ],
           ),
         ),
       ),
