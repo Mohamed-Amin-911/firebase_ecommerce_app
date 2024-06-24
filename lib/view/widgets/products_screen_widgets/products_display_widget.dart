@@ -68,7 +68,7 @@ class ProductsDisplayWidget extends StatelessWidget {
                         .toLowerCase()) ||
                 product.store.toLowerCase().contains(Provider.of<RetrieveProductProvider>(context, listen: true).searchedChar.toLowerCase()))
             .toList()[index];
-        return ProductCard(
+        return ProductCard(product: product,
             image: product.image,
             isFavourited: false,
             rating: product.rating,

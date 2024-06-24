@@ -24,6 +24,20 @@ class RetrieveProductProvider extends ChangeNotifier {
   double get minPrice => _minPrice;
   double get maxPrice => _maxPrice;
 
+  String _selectedSize = 'L';
+  String get selectedSize => _selectedSize;
+  void setSelectedSize(String size) {
+    _selectedSize = size;
+    notifyListeners();
+  }
+
+  String _sellectedColor = '0xff020202';
+  String get sellectedColor => _sellectedColor;
+  void setSellectedColor(String color) {
+    _sellectedColor = color;
+    notifyListeners();
+  }
+
   void setSelectedColors(String color) {
     _selectedColors.add(color);
     notifyListeners(); // Notify listeners of changes
@@ -66,9 +80,21 @@ class RetrieveProductProvider extends ChangeNotifier {
           store: data['store'],
           isDiscount: data['isDiscount'],
           discountAmount: data['discountAmount'],
-          sizes: data['sizes'].toString().split(',').toList(),
-          colors: data['colors'].toString().split(',').toList(),
-          reviews: data['reviews'].toString().split(',').toList(),
+          sizes: data['sizes']
+              .toString()
+              .substring(1, data['sizes'].toString().length - 1)
+              .split(', ')
+              .toList(),
+          colors: data['colors']
+              .toString()
+              .substring(1, data['colors'].toString().length - 1)
+              .split(', ')
+              .toList(),
+          reviews: data['reviews']
+              .toString()
+              // .substring(1, data['reviews'].toString().length - 1)
+              .split(', ')
+              .toList(),
         );
       }).toList();
       notifyListeners();
@@ -100,6 +126,7 @@ class RetrieveProductProvider extends ChangeNotifier {
       //       ),
       //     );
     }
+    print(products[0].colors);
   }
 
   void sortByPriceAscending() {

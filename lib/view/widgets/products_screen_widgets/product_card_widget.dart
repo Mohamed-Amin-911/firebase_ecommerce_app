@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/model/product_model.dart';
+import 'package:ecommerce_app/view/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +16,7 @@ class ProductCard extends StatelessWidget {
     required this.name,
     required this.price,
     required this.store,
+    required this.product,
   });
   final String image;
   final bool isFavourited;
@@ -22,10 +25,17 @@ class ProductCard extends StatelessWidget {
   final String name;
   final String store;
   final String price;
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductScreen(product: product),
+            ));
+      },
       child: Stack(
         children: [
           Container(

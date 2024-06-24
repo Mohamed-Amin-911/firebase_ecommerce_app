@@ -129,16 +129,19 @@ List<Product> generateProducts() {
     return Product(
       category: Category.values[random.nextInt(Category.values.length)].name,
       colors: [
-        colors[random.nextInt(colors.length)]
-      ], // Add more colors if needed
+        "0xff020202",
+        "0xffF6F6F6",
+        "0xffB82222",
+        "0xffBEA9A9",
+        "0xffE2BB8D",
+        "0xff151867",
+      ],
       gender: Gender.values[random.nextInt(Gender.values.length)].name,
       image: images[random.nextInt(images.length)],
       name: names[random.nextInt(names.length)],
       price: 5 + random.nextInt(1000).toDouble(), // Prices between 5 and 104
       rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
-      sizes: List<String>.from(Size.values.map((size) => size.name).toList()
-        ..shuffle()
-        ..take(random.nextInt(Size.values.length) + 1)),
+      sizes: ["XS", "S", "M", "L", "XL"],
       subcategory:
           SubCategory.values[random.nextInt(SubCategory.values.length)].name,
       reviews: [], // Add review texts if needed

@@ -1,12 +1,10 @@
 import 'package:ecommerce_app/constants/text_style.dart';
-import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/view/screens/products_screen.dart';
 import 'package:ecommerce_app/view/widgets/red_button_widget.dart';
 import 'package:ecommerce_app/view/widgets/shop_screen_widgets/sub_category_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class SubCategoryScreen extends StatelessWidget {
   const SubCategoryScreen({super.key, required this.cat, required this.gender});

@@ -26,20 +26,20 @@ class _FilterScreenState extends State<FilterScreen> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductsScreen(
-                        gender: widget.gender,
-                        subcat: widget.subcat,
-                        cat: widget.cat),
-                  )).then((value) {
-                setState(() {});
-              });
+              // Navigator.pushReplacement(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => ProductsScreen(
+              //           gender: widget.gender,
+              //           subcat: widget.subcat,
+              //           cat: widget.cat),
+              //     )).then((value) {
+              //   setState(() {});
+              // });
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
-              color: kColor.textColor,
+              color: kColor.whiteColor,
             )),
         centerTitle: true,
         elevation: 5,
