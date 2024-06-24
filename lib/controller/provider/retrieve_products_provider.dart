@@ -24,14 +24,14 @@ class RetrieveProductProvider extends ChangeNotifier {
   double get minPrice => _minPrice;
   double get maxPrice => _maxPrice;
 
-  String _selectedSize = 'L';
+  String _selectedSize = ' ';
   String get selectedSize => _selectedSize;
   void setSelectedSize(String size) {
     _selectedSize = size;
     notifyListeners();
   }
 
-  String _sellectedColor = '0xff020202';
+  String _sellectedColor = " ";
   String get sellectedColor => _sellectedColor;
   void setSellectedColor(String color) {
     _sellectedColor = color;
@@ -95,6 +95,7 @@ class RetrieveProductProvider extends ChangeNotifier {
               // .substring(1, data['reviews'].toString().length - 1)
               .split(', ')
               .toList(),
+          description: data['description'],
         );
       }).toList();
       notifyListeners();

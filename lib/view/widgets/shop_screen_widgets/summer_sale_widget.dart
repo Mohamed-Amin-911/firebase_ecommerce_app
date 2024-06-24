@@ -18,6 +18,7 @@ class SummerSaleWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: kColor.redColor, borderRadius: BorderRadius.circular(8)),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "SUMMER SALES",

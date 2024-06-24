@@ -35,6 +35,7 @@ class Product {
   final List<String> colors;
   final List<String> reviews;
   final String store;
+  final String description;
 
   Product({
     this.id,
@@ -51,6 +52,7 @@ class Product {
     required this.store,
     this.isDiscount = false,
     this.discountAmount = 0,
+    required this.description,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -68,6 +70,7 @@ class Product {
         sizes: List<String>.from(json["sizes"].map((x) => Size.values[x].name)),
         colors: List<String>.from(json["colors"].map((x) => x)),
         reviews: List<String>.from(json["reviews"].map((x) => x)),
+        description: json["description"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -85,6 +88,7 @@ class Product {
         "sizes": sizes.map((x) => x).toList(),
         "colors": colors,
         "reviews": reviews,
+        "description": description
       };
 }
 
@@ -113,22 +117,22 @@ List<Product> generateProducts() {
     "H&M",
     "Uniqlo",
     "Gap",
-    // Add more store names
   ];
-  final List<String> colors = [
-    "0xff020202",
-    "0xffF6F6F6",
-    "0xffB82222",
-    "0xffBEA9A9",
-    "0xffE2BB8D",
-    "0xff151867",
-  ];
+  // final List<String> colors = [
+  //   "0xff020202",
+  //   "0xffF6F6F6",
+  //   "0xffB82222",
+  //   "0xffBEA9A9",
+  //   "0xffE2BB8D",
+  //   "0xff151867",
+  // ];
   final Random random = Random();
 
   List<Product> products = List.generate(100, (index) {
     return Product(
       category: Category.values[random.nextInt(Category.values.length)].name,
       colors: [
+        " ",
         "0xff020202",
         "0xffF6F6F6",
         "0xffB82222",
@@ -141,11 +145,13 @@ List<Product> generateProducts() {
       name: names[random.nextInt(names.length)],
       price: 5 + random.nextInt(1000).toDouble(), // Prices between 5 and 104
       rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
-      sizes: ["XS", "S", "M", "L", "XL"],
+      sizes: [" ", "XS", "S", "M", "L", "XL"],
       subcategory:
           SubCategory.values[random.nextInt(SubCategory.values.length)].name,
       reviews: [], // Add review texts if needed
       store: stores[random.nextInt(stores.length)],
+      description:
+          "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
     );
   });
 

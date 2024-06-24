@@ -36,6 +36,7 @@ class UploadProductProvider extends ChangeNotifier {
               .toList(), // Convert sizes to strings and list
           'colors': product.colors, // Already a list of strings
           'reviews': product.reviews,
+          'description': product.description,
         };
 
         batch.set(docRef, data);
