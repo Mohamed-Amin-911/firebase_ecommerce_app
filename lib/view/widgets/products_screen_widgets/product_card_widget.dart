@@ -1,16 +1,17 @@
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/constants/colors.dart';
+import 'package:provider/provider.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.image,
-    required this.isFavourited,
     required this.rating,
     required this.reviews,
     required this.name,
@@ -19,13 +20,20 @@ class ProductCard extends StatelessWidget {
     required this.product,
   });
   final String image;
-  final bool isFavourited;
+
   final double rating;
   final int reviews;
   final String name;
   final String store;
   final String price;
   final Product product;
+
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  @override
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,7 +41,7 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductScreen(product: product),
+              builder: (context) => ProductScreen(product: widget.product),
             ));
       },
       child: Stack(
@@ -47,7 +55,7 @@ class ProductCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    image,
+                    widget.image,
                     width: 162.w,
                     height: 184.h,
                     fit: BoxFit.cover,
@@ -57,7 +65,7 @@ class ProductCard extends StatelessWidget {
                 Row(
                   children: [
                     RatingBar.builder(
-                      initialRating: rating,
+                      initialRating: widget.rating,
                       minRating: 0,
                       direction: Axis.horizontal,
                       ignoreGestures: true,
@@ -72,7 +80,7 @@ class ProductCard extends StatelessWidget {
                       onRatingUpdate: (rating) {},
                     ),
                     Text(
-                      " ($reviews)",
+                      " (${widget.reviews})",
                       style: appStyle(
                           fw: FontWeight.w500,
                           size: 15.sp,
@@ -81,14 +89,14 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  store,
+                  widget.store,
                   style: appStyle(
                       fw: FontWeight.w500,
                       size: 15.sp,
                       color: kColor.text2Color),
                 ),
                 Text(
-                  name,
+                  widget.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: appStyle(
@@ -101,7 +109,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  "$price\$",
+                  "${widget.price}\$",
                   style: appStyle(
                       fw: FontWeight.w600,
                       size: 16.sp,
@@ -113,27 +121,46 @@ class ProductCard extends StatelessWidget {
           Positioned(
             right: 0.w,
             top: 150.h,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: kColor.whiteColor,
-                  shape: const CircleBorder(),
-                  padding: REdgeInsets.all(10),
-                  elevation: 4),
-              onPressed: () {},
-              child: isFavourited
-                  ? const Center(
-                      child: Icon(
-                        Icons.favorite_rounded,
-                        color: kColor.redColor,
-                      ),
-                    )
-                  : const Center(
-                      child: Icon(
-                        Icons.favorite_border_rounded,
-                        color: kColor.text2Color,
-                      ),
-                    ),
-            ),
+            child: FutureBuilder(
+                future: Provider.of<FavoritesProvider>(context, listen: false)
+                    .isFavorite(widget.product.id!),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: kColor.whiteColor,
+                          shape: const CircleBorder(),
+                          padding: REdgeInsets.all(10),
+                          elevation: 4),
+                      onPressed: () {
+                        if (snapshot.data == true) {
+                          Provider.of<FavoritesProvider>(context, listen: false)
+                              .removeFavorites(widget.product.id!);
+                          setState(() {});
+                        } else if (snapshot.data == false) {
+                          Provider.of<FavoritesProvider>(context, listen: false)
+                              .addToFavorites(widget.product.id!);
+                          setState(() {});
+                        }
+                      },
+                      child: snapshot.data!
+                          ? const Center(
+                              child: Icon(
+                                Icons.favorite_rounded,
+                                color: kColor.redColor,
+                              ),
+                            )
+                          : const Center(
+                              child: Icon(
+                                Icons.favorite_border_rounded,
+                                color: kColor.text2Color,
+                              ),
+                            ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
           )
         ],
       ),

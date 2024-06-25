@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/add_to_cart_button.dart';
@@ -19,7 +20,8 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final valueListenable = ValueNotifier<String?>(null);
-  bool isFavourited = false;
+
+  @override
   @override
   Widget build(BuildContext context) {
     String selectedSize =
@@ -30,6 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
         Provider.of<RetrieveProductProvider>(context, listen: true)
             .sellectedColor;
     final product = widget.product;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kColor.whiteColor,
@@ -200,33 +203,51 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
 
-                  const Spacer(),
+                  SizedBox(width: 30.w),
                   //favourite
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: kColor.whiteColor,
-                        shape: const CircleBorder(),
-                        padding: REdgeInsets.all(10),
-                        elevation: 4),
-                    onPressed: () {
-                      setState(() {
-                        isFavourited = !isFavourited;
-                      });
-                    },
-                    child: isFavourited
-                        ? const Center(
-                            child: Icon(
-                              Icons.favorite_rounded,
-                              color: kColor.redColor,
-                            ),
-                          )
-                        : const Center(
-                            child: Icon(
-                              Icons.favorite_border_rounded,
-                              color: kColor.text2Color,
-                            ),
-                          ),
-                  ),
+                  FutureBuilder(
+                      future:
+                          Provider.of<FavoritesProvider>(context, listen: false)
+                              .isFavorite(widget.product.id!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: kColor.whiteColor,
+                                shape: const CircleBorder(),
+                                padding: REdgeInsets.all(10),
+                                elevation: 4),
+                            onPressed: () {
+                              if (snapshot.data == true) {
+                                Provider.of<FavoritesProvider>(context,
+                                        listen: false)
+                                    .removeFavorites(product.id!);
+                                setState(() {});
+                              } else if (snapshot.data == false) {
+                                Provider.of<FavoritesProvider>(context,
+                                        listen: false)
+                                    .addToFavorites(product.id!);
+                                setState(() {});
+                              }
+                            },
+                            child: snapshot.data!
+                                ? const Center(
+                                    child: Icon(
+                                      Icons.favorite_rounded,
+                                      color: kColor.redColor,
+                                    ),
+                                  )
+                                : const Center(
+                                    child: Icon(
+                                      Icons.favorite_border_rounded,
+                                      color: kColor.text2Color,
+                                    ),
+                                  ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
                 ],
               ),
 

@@ -12,4 +12,14 @@ class SecureStorage {
   static writeIsSaved(String key, String value) async {
     await storage.write(key: key, value: value);
   }
+
+  static writeId(String key, String value) async {
+    await storage.write(key: key, value: value);
+  }
+
+  static Future<String> readId(String key) async {
+    String value = await storage.read(key: key) ?? 'No data found!';
+
+    return value;
+  }
 }

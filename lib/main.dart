@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants/colors.dart';
+import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_user_provider.dart';
@@ -18,6 +19,9 @@ void main() async {
     ChangeNotifierProvider(create: (_) => UploadProductProvider()),
     ChangeNotifierProvider(create: (_) => RetrieveProductProvider()),
     ChangeNotifierProvider(create: (_) => UploadUserProvider()),
+    ChangeNotifierProvider(
+      create: (_) => FavoritesProvider(),
+    ),
   ], child: const MyApp()));
 }
 

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/model/secure_storage_class.dart';
 import 'package:ecommerce_app/model/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UploadUserProvider extends ChangeNotifier {
@@ -8,7 +10,7 @@ class UploadUserProvider extends ChangeNotifier {
 
   bool get isUploading => _isUploading;
 
-  Future<void> uploadUser(User user) async {
+  Future<void> uploadUser(Userr user) async {
     try {
       _isUploading = true;
       notifyListeners(); // Notify UI about upload start
@@ -17,7 +19,7 @@ class UploadUserProvider extends ChangeNotifier {
       final batch = _firestore.batch();
 
       final docRef = collectionRef.doc(); // Generate unique IDs
-
+      SecureStorage.writeId("id", docRef.id);
       final Map<String, dynamic> data = {
         'id': docRef.id,
         'name': user.name,

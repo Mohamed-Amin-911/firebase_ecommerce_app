@@ -1,16 +1,16 @@
 import 'package:ecommerce_app/model/credit_card_model.dart';
 
-class User {
+class Userr {
   String? id;
   final String email;
   final String name;
   final String password;
   final String? image;
-  final List<String> favourites;
-  final List<String> cart;
-  final List<CreditCard> cards;
+  List<String> favourites;
+  List<String> cart;
+  List<CreditCard> cards;
 
-  User({
+  Userr({
     this.id,
     required this.email,
     required this.name,
@@ -21,7 +21,7 @@ class User {
     this.cards = const [],
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory Userr.fromJson(Map<String, dynamic> json) => Userr(
         id: json["id"],
         email: json["email"],
         name: json["name"],

@@ -221,7 +221,7 @@ class _SignupScreenState extends State<SignupScreen> {
         _emailController.text, _passwordController.text);
     await _auth.sendEmailVerification();
     if (user != null) {
-      Provider.of<UploadUserProvider>(context, listen: false).uploadUser(User(
+      Provider.of<UploadUserProvider>(context, listen: false).uploadUser(Userr(
           email: _emailController.text,
           name: _nameController.text,
           password: _passwordController.text));
