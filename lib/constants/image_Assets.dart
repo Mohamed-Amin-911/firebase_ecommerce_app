@@ -15,4 +15,5 @@ class KImageAssets {
   static const String menClothes = "assets/images/men-clothes.jpg";
   static const String menShoes = "assets/images/men-shoes.jpg";
   static const String menAccesories = "assets/images/men-accesories.jpg";
+  static const String userImage = "assets/images/user_image.png";
 }

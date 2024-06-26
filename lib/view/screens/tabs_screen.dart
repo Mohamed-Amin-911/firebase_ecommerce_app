@@ -70,7 +70,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 HomeScreen(),
                 ShopScreen(),
                 BagScreen(),
-                FavouritesScreen(),
+                FavoritesScreen(),
                 ProfileScreen(),
               ],
             )
@@ -151,7 +151,7 @@ class _TabsScreenState extends State<TabsScreen> {
                       const ColorFilter.mode(kColor.redColor, BlendMode.srcIn),
                 ),
                 title: Text(
-                  'Favourites',
+                  'Favorites',
                   style: appStyle(fw: FontWeight.w700, size: 10.sp),
                 ),
                 selectedColor: kColor.redColor,

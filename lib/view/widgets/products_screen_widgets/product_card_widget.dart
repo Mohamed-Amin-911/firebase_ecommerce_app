@@ -158,7 +158,29 @@ class _ProductCardState extends State<ProductCard> {
                             ),
                     );
                   } else {
-                    return Container();
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: kColor.whiteColor,
+                          shape: const CircleBorder(),
+                          padding: REdgeInsets.all(10),
+                          elevation: 4),
+                      onPressed: () {},
+                      child:
+                          Provider.of<FavoritesProvider>(context, listen: true)
+                                  .isFavourited
+                              ? const Center(
+                                  child: Icon(
+                                    Icons.favorite_rounded,
+                                    color: kColor.redColor,
+                                  ),
+                                )
+                              : const Center(
+                                  child: Icon(
+                                    Icons.favorite_border_rounded,
+                                    color: kColor.text2Color,
+                                  ),
+                                ),
+                    );
                   }
                 }),
           )

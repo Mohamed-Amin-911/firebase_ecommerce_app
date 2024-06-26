@@ -6,14 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class FilterScreen extends StatefulWidget {
-  const FilterScreen(
-      {super.key,
-      required this.gender,
-      required this.cat,
-      required this.subcat});
-  final String gender;
-  final String cat;
-  final String subcat;
+  const FilterScreen({
+    super.key,
+  });
+
   @override
   State<FilterScreen> createState() => _FilterScreenState();
 }
@@ -24,18 +20,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => ProductsScreen(
-              //           gender: widget.gender,
-              //           subcat: widget.subcat,
-              //           cat: widget.cat),
-              //     )).then((value) {
-              //   setState(() {});
-              // });
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: kColor.whiteColor,
