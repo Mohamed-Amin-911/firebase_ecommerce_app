@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
+import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_user_provider.dart';
 import 'package:ecommerce_app/firebase_options.dart';
@@ -19,9 +20,8 @@ void main() async {
     ChangeNotifierProvider(create: (_) => UploadProductProvider()),
     ChangeNotifierProvider(create: (_) => RetrieveProductProvider()),
     ChangeNotifierProvider(create: (_) => UploadUserProvider()),
-    ChangeNotifierProvider(
-      create: (_) => FavoritesProvider(),
-    ),
+    ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+    ChangeNotifierProvider(create: (_) => ReviewProvider()),
   ], child: const MyApp()));
 }
 

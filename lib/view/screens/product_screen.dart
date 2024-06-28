@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
+import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/add_to_cart_button.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/name_and_price_widget.dart';
@@ -22,6 +23,16 @@ class _ProductScreenState extends State<ProductScreen> {
   final valueListenable = ValueNotifier<String?>(null);
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<RetrieveProductProvider>(context, listen: false)
+        .fetchProducts();
+    Provider.of<ReviewProvider>(context, listen: false)
+        .fetchProductReviews(widget.product.id!);
+    Provider.of<ReviewProvider>(context, listen: false)
+        .fetchProductRating(widget.product.id!);
+  }
+
   @override
   Widget build(BuildContext context) {
     String selectedSize =
@@ -280,8 +291,13 @@ class _ProductScreenState extends State<ProductScreen> {
                 NameAndPriceWidget(product: product),
 
                 SizedBox(height: 8.h),
-                //ratign and reviews number
-                RatingAndReviewsNoWidget(product: product),
+                //rating and reviews number
+                RatingAndReviewsNoWidget(
+                    product: widget.product,
+                    rating: Provider.of<ReviewProvider>(context, listen: true)
+                        .rating,
+                    reviews: Provider.of<ReviewProvider>(context, listen: true)
+                        .reviews),
 
                 //description
                 Container(

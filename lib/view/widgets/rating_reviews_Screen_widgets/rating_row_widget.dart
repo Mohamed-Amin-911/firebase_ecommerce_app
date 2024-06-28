@@ -1,11 +1,13 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/view/screens/rating_reviews_screnn.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/ratign_container_widget.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/rating_Statistics.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/rating_no_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class RatingRowWidget extends StatelessWidget {
   const RatingRowWidget({
@@ -23,7 +25,7 @@ class RatingRowWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.product.rating.toString(),
+              "${Provider.of<ReviewProvider>(context, listen: true).rating}",
               style: appStyle(
                   fw: FontWeight.w600, size: 44.sp, color: kColor.textColor),
             ),
