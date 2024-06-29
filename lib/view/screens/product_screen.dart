@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
@@ -328,7 +329,15 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AddToCartButton(function: () {}),
+                      AddToCartButton(function: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addToCart({
+                          "id": widget.product.id!,
+                          "quantity": "1",
+                          "size": selectedSize,
+                          "color": selectedColor,
+                        });
+                      }),
                       SizedBox(height: 30.h),
                       const ProductDummyWidgets(),
                     ],

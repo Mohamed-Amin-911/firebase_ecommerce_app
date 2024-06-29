@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants/colors.dart';
+import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
@@ -8,6 +9,7 @@ import 'package:ecommerce_app/firebase_options.dart';
 import 'package:ecommerce_app/view/screens/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => UploadUserProvider()),
     ChangeNotifierProvider(create: (_) => FavoritesProvider()),
     ChangeNotifierProvider(create: (_) => ReviewProvider()),
+    ChangeNotifierProvider(create: (_) => CartProvider()),
   ], child: const MyApp()));
 }
 
@@ -36,6 +39,8 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+              overlays: SystemUiOverlay.values);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'eCommerce app',

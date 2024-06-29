@@ -29,6 +29,7 @@ class UploadUserProvider extends ChangeNotifier {
         "favourites": user.favourites.map((x) => x).toList(),
         "cart": user.cart.map((x) => x).toList(),
         "cards": user.cards.map((x) => x).toList(),
+        "shippingAddress": user.shippingAddress.map((x) => x).toList(),
       };
 
       batch.set(docRef, data);
