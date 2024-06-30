@@ -7,11 +7,16 @@ import 'package:flutter/material.dart';
 class CartProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
   List<Map<String, String>> _items = [];
   List<Map<String, String>> get items => _items;
 
+  double _totalPrice = 0;
+  double get totalPrice => _totalPrice;
+
   final List<Product> _products = [];
   List<Product> get products => _products;
+
   Future<void> addToCart(
       Map<String, String> productData, BuildContext context) async {
     final user = FirebaseAuth.instance.currentUser;
@@ -40,13 +45,11 @@ class CartProvider extends ChangeNotifier {
     await userRef.update({
       "cart": FieldValue.arrayRemove([productData]),
     });
-
-    fetchCart();
-    getProductsFromFavs(prods);
+    // fetchCart(prods);
     notifyListeners();
   }
 
-  Future<void> fetchCart() async {
+  Future<void> fetchCart(List<Product> prods) async {
     _isLoading = true;
     notifyListeners();
     final userId = await SecureStorage.readId("id");
@@ -66,13 +69,18 @@ class CartProvider extends ChangeNotifier {
     } catch (e) {
       print('Error fetching cart: $e');
     }
+    getProductsFromFavs(prods);
+    getTotalPrice();
+
+    notifyListeners();
   }
 
   Future<void> getProductsFromFavs(List<Product> prods) async {
-    for (var i in items) {
-      _products.add(prods.firstWhere((product) => product.id == i["id"]));
+    _products.clear();
+    for (var i in _items) {
+      _products.addAll(prods.where((product) => product.id == i["id"]));
     }
-
+    // getTotalPrice();
     notifyListeners();
   }
 
@@ -82,7 +90,7 @@ class CartProvider extends ChangeNotifier {
     int index = _items.indexWhere((e) =>
         e["id"] == productId && e["color"] == color && e["size"] == size);
 
-    _items.removeWhere((e) => e["id"] == productId);
+    _items.removeAt(index);
     _items.insert(index, {
       "color": color,
       "id": productId,
@@ -90,7 +98,7 @@ class CartProvider extends ChangeNotifier {
       "size": size,
     });
 
-    editedItems.toSet().toList();
+    editedItems;
 
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
@@ -103,8 +111,20 @@ class CartProvider extends ChangeNotifier {
       "cart": _items.toSet().toList(),
     });
 
-    fetchCart();
-    getProductsFromFavs(prods);
+    getTotalPrice();
+    notifyListeners();
+  }
+
+  void getTotalPrice() {
+    _totalPrice = 0;
+
+    for (var item in products) {
+      Map<String, String> cartItem =
+          _items.firstWhere((e) => e["id"] == item.id);
+      double? price = item.price * int.parse(cartItem["quantity"]!);
+
+      _totalPrice += price;
+    }
     notifyListeners();
   }
 }

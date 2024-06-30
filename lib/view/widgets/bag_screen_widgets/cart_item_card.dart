@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
+import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screen.dart';
 import 'package:flutter/material.dart';
@@ -83,16 +84,26 @@ Padding cartItemCard(Product product, Map<String, String> cartItem,
                       onPressed: () {
                         int quantity = int.parse(cartItem["quantity"]!);
                         quantity--;
-                        quantity == 0
-                            ? Provider.of<CartProvider>(context, listen: false)
-                                .removeFromCart(cartItem, products)
-                            : Provider.of<CartProvider>(context, listen: false)
-                                .changeQuantity(
-                                    cartItem["id"]!,
-                                    cartItem["color"]!,
-                                    quantity,
-                                    cartItem["size"]!,
-                                    prods);
+                        if (quantity == 0) {
+                          Provider.of<CartProvider>(context, listen: false)
+                              .removeFromCart(cartItem, products);
+                          Provider.of<CartProvider>(context, listen: false)
+                              .getProductsFromFavs(prods);
+                          Provider.of<CartProvider>(context, listen: false)
+                              .fetchCart(
+                            Provider.of<RetrieveProductProvider>(context,
+                                    listen: false)
+                                .products,
+                          );
+                        } else {
+                          Provider.of<CartProvider>(context, listen: false)
+                              .changeQuantity(
+                                  cartItem["id"]!,
+                                  cartItem["color"]!,
+                                  quantity,
+                                  cartItem["size"]!,
+                                  prods);
+                        }
                       },
                       icon: const Icon(
                         Icons.remove,

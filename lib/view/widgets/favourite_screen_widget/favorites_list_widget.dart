@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/constants/icon_assets.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screen.dart';
@@ -6,7 +5,6 @@ import 'package:ecommerce_app/view/widgets/favourite_screen_widget/favorite_card
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 ListView favoritesListWidget(List<Product> pp) {
@@ -45,22 +43,24 @@ ListView favoritesListWidget(List<Product> pp) {
                   ))),
 
           //checkout button
-          Positioned(
-              top: 80.h,
-              right: 0.w,
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: kColor.redColor),
-                  child: SvgPicture.asset(
-                    IconAssets.bagFill.toString(),
-                    colorFilter: const ColorFilter.mode(
-                        kColor.whiteColor, BlendMode.srcIn),
-                  ),
-                ),
-              ))
+          // Positioned(
+          //     top: 80.h,
+          //     right: 0.w,
+          //     child: InkWell(
+          //       onTap: () {
+
+          //       },
+          //       child: Container(
+          //         padding: const EdgeInsets.all(20),
+          //         decoration: const BoxDecoration(
+          //             shape: BoxShape.circle, color: kColor.redColor),
+          //         child: SvgPicture.asset(
+          //           IconAssets.bagFill.toString(),
+          //           colorFilter: const ColorFilter.mode(
+          //               kColor.whiteColor, BlendMode.srcIn),
+          //         ),
+          //       ),
+          //     ))
         ],
       );
     },

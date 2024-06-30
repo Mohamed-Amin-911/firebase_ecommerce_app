@@ -127,7 +127,6 @@ class RetrieveProductProvider extends ChangeNotifier {
       //       ),
       //     );
     }
-    print(products[0].colors);
   }
 
   void sortByPriceAscending() {

@@ -73,7 +73,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           final List<Product> pp = snapshot.data!;
-                          return Expanded(child: favoritesListWidget(pp));
+                          return Expanded(
+                              child: Padding(
+                            padding: EdgeInsets.only(top: 20.h),
+                            child: favoritesListWidget(pp),
+                          ));
                         } else {
                           return Center(
                               child: Column(
