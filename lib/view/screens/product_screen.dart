@@ -1,12 +1,11 @@
 import 'package:ecommerce_app/constants/text_style.dart';
-import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/widgets/product_screen_widgets/add_to_cart_button.dart';
+import 'package:ecommerce_app/view/widgets/favourite_screen_widget/add_To_cart_And_dummy_widgets.dart';
+import 'package:ecommerce_app/view/widgets/favourite_screen_widget/description.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/name_and_price_widget.dart';
-import 'package:ecommerce_app/view/widgets/product_screen_widgets/product_dummy_widgets.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/rating_and_reviews_number_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
@@ -301,48 +300,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         .reviews),
 
                 //description
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Text(
-                    product.description,
-                    style: appStyle(
-                            fw: FontWeight.w500,
-                            size: 14.sp,
-                            color: kColor.textColor)
-                        .copyWith(height: 1.1.h),
-                  ),
-                ),
+                DescriptionWidget(product: product),
 
                 //add to cart and dummy widgets
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-                  decoration:
-                      const BoxDecoration(color: kColor.whiteColor, boxShadow: [
-                    BoxShadow(
-                        blurRadius: 8,
-                        spreadRadius: 8,
-                        color: Color.fromARGB(127, 155, 155, 155),
-                        offset: Offset(0, 2))
-                  ]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AddToCartButton(function: () {
-                        Provider.of<CartProvider>(context, listen: false)
-                            .addToCart({
-                          "id": widget.product.id!,
-                          "quantity": "1",
-                          "size": selectedSize,
-                          "color": selectedColor,
-                        });
-                      }),
-                      SizedBox(height: 30.h),
-                      const ProductDummyWidgets(),
-                    ],
-                  ),
-                ),
+                AddToCartAndDummyWidget(
+                    selectedColor: selectedColor,
+                    selectedSize: selectedSize,
+                    widget: widget),
               ],
             ),
           ),

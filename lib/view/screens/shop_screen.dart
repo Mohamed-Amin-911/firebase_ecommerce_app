@@ -27,20 +27,6 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
         appBar: AppBar(
           backgroundColor: kColor.whiteColor,
           elevation: 0,
-          // leading: IconButton(
-          //     onPressed: () {},
-          //     icon: const Icon(
-          //       Icons.arrow_back_ios_new_rounded,
-          //       color: kColor.textColor,
-          //     )),
-          // actions: [
-          //   IconButton(
-          //       onPressed: () {},
-          //       icon: const Icon(
-          //         Icons.search_rounded,
-          //         color: kColor.textColor,
-          //       ))
-          // ],
           centerTitle: true,
           title: Text(
             "Categories",

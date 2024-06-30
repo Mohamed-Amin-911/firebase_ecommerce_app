@@ -24,14 +24,6 @@ class SubCategoryScreen extends StatelessWidget {
               Icons.arrow_back_ios_new_rounded,
               color: kColor.textColor,
             )),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search_rounded,
-                color: kColor.textColor,
-              ))
-        ],
         centerTitle: true,
         title: Text(
           "Categories",

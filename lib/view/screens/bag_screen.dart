@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
+import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/widgets/bag_screen_widgets/cart_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,8 @@ class BagScreen extends StatefulWidget {
 }
 
 class _BagScreenState extends State<BagScreen> {
+  int quantity = 1;
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +52,7 @@ class _BagScreenState extends State<BagScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 18.h),
+            SizedBox(height: 10.h),
             Text("My Bag",
                 style: appStyle(
                     fw: FontWeight.w600, size: 34.sp, color: kColor.textColor)),
@@ -73,11 +76,16 @@ class _BagScreenState extends State<BagScreen> {
                     ?
                     //if list is empty
                     Center(
-                        child: Text("No items in your bag",
-                            style: appStyle(
-                                fw: FontWeight.w600,
-                                size: 34.sp,
-                                color: kColor.textColor)),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 160.h),
+                            Text("No items in your bag",
+                                style: appStyle(
+                                    fw: FontWeight.w400,
+                                    size: 20.sp,
+                                    color: kColor.textColor)),
+                          ],
+                        ),
                       )
                     :
                     //listview
@@ -93,7 +101,8 @@ class _BagScreenState extends State<BagScreen> {
                                     .firstWhere((product) =>
                                         product.id == cartItems[index]["id"]),
                                 cartItems[index],
-                                context);
+                                context,
+                                products);
                           },
                         ),
                       )

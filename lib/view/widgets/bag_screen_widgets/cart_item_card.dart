@@ -1,12 +1,14 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-Padding cartItemCard(
-    Product product, Map<String, String> cartItem, BuildContext context) {
+Padding cartItemCard(Product product, Map<String, String> cartItem,
+    BuildContext context, List<Product> prods) {
   return Padding(
     padding: EdgeInsets.only(bottom: 20.h),
     child: InkWell(
@@ -78,7 +80,20 @@ Padding cartItemCard(
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        int quantity = int.parse(cartItem["quantity"]!);
+                        quantity--;
+                        quantity == 0
+                            ? Provider.of<CartProvider>(context, listen: false)
+                                .removeFromCart(cartItem, products)
+                            : Provider.of<CartProvider>(context, listen: false)
+                                .changeQuantity(
+                                    cartItem["id"]!,
+                                    cartItem["color"]!,
+                                    quantity,
+                                    cartItem["size"]!,
+                                    prods);
+                      },
                       icon: const Icon(
                         Icons.remove,
                         color: kColor.text2Color,
@@ -91,7 +106,13 @@ Padding cartItemCard(
                         color: kColor.textColor),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        int quantity = int.parse(cartItem["quantity"]!);
+                        quantity++;
+                        Provider.of<CartProvider>(context, listen: false)
+                            .changeQuantity(cartItem["id"]!, cartItem["color"]!,
+                                quantity, cartItem["size"]!, prods);
+                      },
                       icon: const Icon(
                         Icons.add,
                         color: kColor.text2Color,

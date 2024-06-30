@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
-          SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
               overlays: SystemUiOverlay.values);
           return MaterialApp(
             debugShowCheckedModeBanner: false,

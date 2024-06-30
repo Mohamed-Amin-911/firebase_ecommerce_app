@@ -12,7 +12,8 @@ class CartProvider extends ChangeNotifier {
 
   final List<Product> _products = [];
   List<Product> get products => _products;
-  Future<void> addToCart(Map<String, String> productData) async {
+  Future<void> addToCart(
+      Map<String, String> productData, BuildContext context) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -22,11 +23,14 @@ class CartProvider extends ChangeNotifier {
     await userRef.update({
       "cart": FieldValue.arrayUnion([productData]),
     });
-
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("item added to cart")),
+    );
     notifyListeners();
   }
 
-  Future<void> removeFromCart(Map<String, String> productData) async {
+  Future<void> removeFromCart(
+      Map<String, String> productData, List<Product> prods) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -37,6 +41,8 @@ class CartProvider extends ChangeNotifier {
       "cart": FieldValue.arrayRemove([productData]),
     });
 
+    fetchCart();
+    getProductsFromFavs(prods);
     notifyListeners();
   }
 
@@ -67,6 +73,38 @@ class CartProvider extends ChangeNotifier {
       _products.add(prods.firstWhere((product) => product.id == i["id"]));
     }
 
+    notifyListeners();
+  }
+
+  Future<void> changeQuantity(String productId, String color, int quantity,
+      String size, List<Product> prods) async {
+    List<Map<String, String>> editedItems = [];
+    int index = _items.indexWhere((e) =>
+        e["id"] == productId && e["color"] == color && e["size"] == size);
+
+    _items.removeWhere((e) => e["id"] == productId);
+    _items.insert(index, {
+      "color": color,
+      "id": productId,
+      "quantity": quantity.toString(),
+      "size": size,
+    });
+
+    editedItems.toSet().toList();
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final userId = await SecureStorage.readId("id");
+
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+
+    await userRef.set({
+      "cart": _items.toSet().toList(),
+    });
+
+    fetchCart();
+    getProductsFromFavs(prods);
     notifyListeners();
   }
 }
