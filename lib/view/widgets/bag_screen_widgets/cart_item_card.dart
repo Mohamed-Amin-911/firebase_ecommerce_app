@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
+import 'package:ecommerce_app/controller/provider/promoCode_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screen.dart';
@@ -95,6 +96,11 @@ Padding cartItemCard(Product product, Map<String, String> cartItem,
                                     listen: false)
                                 .products,
                           );
+
+                          Provider.of<PromoCodePRovider>(context, listen: false)
+                              .setDiscount(0);
+                          Provider.of<PromoCodePRovider>(context, listen: false)
+                              .setPromoCode("");
                         } else {
                           Provider.of<CartProvider>(context, listen: false)
                               .changeQuantity(
