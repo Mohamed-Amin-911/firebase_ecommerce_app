@@ -8,8 +8,8 @@ class CartProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  List<Map<String, String>> _items = [];
-  List<Map<String, String>> get items => _items;
+  List<Map<String, dynamic>> _items = [];
+  List<Map<String, dynamic>> get items => _items;
 
   double _totalPrice = 0;
   double get totalPrice => _totalPrice;
@@ -35,7 +35,7 @@ class CartProvider extends ChangeNotifier {
   }
 
   Future<void> removeFromCart(
-      Map<String, String> productData, List<Product> prods) async {
+      Map<String, dynamic> productData, List<Product> prods) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -61,13 +61,13 @@ class CartProvider extends ChangeNotifier {
       if (userDoc.exists) {
         List<dynamic> cartData = userDoc.get('cart');
         _items =
-            cartData.map((item) => Map<String, String>.from(item)).toList();
+            cartData.map((item) => Map<String, dynamic>.from(item)).toList();
         notifyListeners();
         _isLoading = false;
         notifyListeners();
       }
     } catch (e) {
-      print('Error fetching cart: $e');
+      print('Error fetchicvcvncvnng cart: $e');
     }
     getProductsFromFavs(prods);
     getTotalPrice();
@@ -107,7 +107,7 @@ class CartProvider extends ChangeNotifier {
 
     final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
 
-    await userRef.set({
+    await userRef.update({
       "cart": _items.toSet().toList(),
     });
 
@@ -119,7 +119,7 @@ class CartProvider extends ChangeNotifier {
     _totalPrice = 0;
 
     for (var item in products) {
-      Map<String, String> cartItem =
+      Map<String, dynamic> cartItem =
           _items.firstWhere((e) => e["id"] == item.id);
       double? price = item.price * int.parse(cartItem["quantity"]!);
 

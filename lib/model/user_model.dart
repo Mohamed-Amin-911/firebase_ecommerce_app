@@ -7,10 +7,12 @@ class Userr {
   final String password;
   final String? image;
   List<String> favourites;
-  List<Map<String, String>> cart;
-  //  List<Order> orders;
+  List<Map<String, dynamic>> cart;
   List<Map<String, String>> cards;
-  List<String> shippingAddress;
+
+  List<Map<String, String>> shippingAddress;
+
+  Map<String, String> selectedShippingAddress;
   Userr({
     this.id,
     required this.email,
@@ -21,7 +23,7 @@ class Userr {
     this.cart = const [],
     this.cards = const [],
     this.shippingAddress = const [],
-    // this.orders=const[],
+    this.selectedShippingAddress = const {},
   });
 
   factory Userr.fromJson(Map<String, dynamic> json) => Userr(
@@ -30,12 +32,12 @@ class Userr {
         name: json["name"],
         password: json["password"],
         favourites: List<String>.from(json["favourites"].map((x) => x)),
-        cart: List<Map<String, String>>.from(json["cart"].map((x) => x)),
+        cart: List<Map<String, dynamic>>.from(json["cart"].map((x) => x)),
         cards: List<Map<String, String>>.from(
             json["cards"].map((x) => CreditCard.fromJson(x))),
-        shippingAddress:
-            List<String>.from(json["shippingAddress"].map((x) => x)),
-        // orders: List<Order>.from(json["orders"].map((x) => Order.fromJson(x))),
+        shippingAddress: List<Map<String, String>>.from(
+            json["shippingAddress"].map((x) => x)),
+        selectedShippingAddress: json["selectedShippingAddress"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,6 +50,6 @@ class Userr {
         "cart": cart.map((x) => x).toList(),
         "cards": cards.map((x) => x).toList(),
         "shippingAddress": shippingAddress.map((x) => x).toList(),
-        // "orders": orders.map((x) => x).toList(),
+        "selectedShippingAddress": selectedShippingAddress
       };
 }

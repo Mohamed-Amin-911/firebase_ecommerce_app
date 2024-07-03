@@ -10,14 +10,18 @@ class KImageAssets {
   static const String kidsClothes = "assets/images/kids-clothes.jpg";
   static const String kidsShoes = "assets/images/kids-shoes.jpg";
   static const String kidsAccesories = "assets/images/kids-accesories.jpg";
-
   static const String menNew = "assets/images/men-new.jpg";
   static const String menClothes = "assets/images/men-clothes.jpg";
   static const String menShoes = "assets/images/men-shoes.jpg";
   static const String menAccesories = "assets/images/men-accesories.jpg";
   static const String userImage = "assets/images/user_image.png";
-
   static const String tenPromo = "assets/images/10_promo.png";
-
   static const String fifteenPromo = "assets/images/15_promo.png";
+
+  static const String mastercard = "assets/images/mastercard.png";
+
+  static const String visa = "assets/images/visa.png";
+  static const String fedex = "assets/images/fedex.png";
+  static const String usps = "assets/images/usps.png";
+  static const String dhl = "assets/images/dhl.png";
 }

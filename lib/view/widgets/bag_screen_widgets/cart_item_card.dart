@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-Padding cartItemCard(Product product, Map<String, String> cartItem,
+Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
     BuildContext context, List<Product> prods) {
   return Padding(
     padding: EdgeInsets.only(bottom: 20.h),

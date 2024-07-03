@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants/colors.dart';
+import 'package:ecommerce_app/controller/provider/address_provider.dart';
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/promoCode_provider.dart';
@@ -27,6 +28,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => ReviewProvider()),
     ChangeNotifierProvider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => PromoCodePRovider()),
+    ChangeNotifierProvider(create: (_) => AddressProvider()),
   ], child: const MyApp()));
 }
 
