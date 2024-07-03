@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/product_screen.dart';
+import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

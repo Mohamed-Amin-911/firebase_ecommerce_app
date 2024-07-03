@@ -2,7 +2,7 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/rating_reviews_screnn.dart';
+import 'package:ecommerce_app/view/screens/product_screens/rating_reviews_screnn.dart';
 
 import 'package:ecommerce_app/view/widgets/outlined_input_border.dart';
 

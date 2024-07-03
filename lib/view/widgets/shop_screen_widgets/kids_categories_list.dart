@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/constants/image_Assets.dart';
-import 'package:ecommerce_app/view/screens/sub_category_screen.dart';
+import 'package:ecommerce_app/view/screens/shop_screens/sub_category_screen.dart';
 import 'package:ecommerce_app/view/widgets/shop_screen_widgets/category_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

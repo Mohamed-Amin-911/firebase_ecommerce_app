@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
-import 'package:ecommerce_app/view/screens/product_screen.dart';
+import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/add_to_cart_button.dart';
 import 'package:ecommerce_app/view/widgets/product_screen_widgets/product_dummy_widgets.dart';
@@ -40,6 +40,7 @@ class AddToCartAndDummyWidget extends StatelessWidget {
                     const SnackBar(content: Text("select a size and color")),
                   )
                 : Provider.of<CartProvider>(context, listen: false).addToCart({
+                    "price": widget.product.price,
                     "id": widget.product.id!,
                     "quantity": "1",
                     "size": selectedSize,

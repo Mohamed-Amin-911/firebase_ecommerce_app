@@ -4,7 +4,7 @@ import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/promoCode_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/product_screen.dart';
+import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -104,6 +104,7 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                         } else {
                           Provider.of<CartProvider>(context, listen: false)
                               .changeQuantity(
+                                  cartItem["price"]!,
                                   cartItem["id"]!,
                                   cartItem["color"]!,
                                   quantity,
@@ -127,8 +128,13 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                         int quantity = int.parse(cartItem["quantity"]!);
                         quantity++;
                         Provider.of<CartProvider>(context, listen: false)
-                            .changeQuantity(cartItem["id"]!, cartItem["color"]!,
-                                quantity, cartItem["size"]!, prods);
+                            .changeQuantity(
+                                cartItem["price"]!,
+                                cartItem["id"]!,
+                                cartItem["color"]!,
+                                quantity,
+                                cartItem["size"]!,
+                                prods);
                       },
                       icon: const Icon(
                         Icons.add,

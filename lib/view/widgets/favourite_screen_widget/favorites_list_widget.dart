@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/product_screen.dart';
+import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 import 'package:ecommerce_app/view/widgets/favourite_screen_widget/favorite_card_items.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';

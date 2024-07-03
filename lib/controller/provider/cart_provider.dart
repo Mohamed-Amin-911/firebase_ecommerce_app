@@ -11,14 +11,11 @@ class CartProvider extends ChangeNotifier {
   List<Map<String, dynamic>> _items = [];
   List<Map<String, dynamic>> get items => _items;
 
-  double _totalPrice = 0;
-  double get totalPrice => _totalPrice;
-
   final List<Product> _products = [];
   List<Product> get products => _products;
 
   Future<void> addToCart(
-      Map<String, String> productData, BuildContext context) async {
+      Map<String, dynamic> productData, BuildContext context) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -80,12 +77,12 @@ class CartProvider extends ChangeNotifier {
     for (var i in _items) {
       _products.addAll(prods.where((product) => product.id == i["id"]));
     }
-    // getTotalPrice();
+    getTotalPrice();
     notifyListeners();
   }
 
-  Future<void> changeQuantity(String productId, String color, int quantity,
-      String size, List<Product> prods) async {
+  Future<void> changeQuantity(double price, String productId, String color,
+      int quantity, String size, List<Product> prods) async {
     List<Map<String, String>> editedItems = [];
     int index = _items.indexWhere((e) =>
         e["id"] == productId && e["color"] == color && e["size"] == size);
@@ -96,6 +93,7 @@ class CartProvider extends ChangeNotifier {
       "id": productId,
       "quantity": quantity.toString(),
       "size": size,
+      "price": price,
     });
 
     editedItems;
@@ -115,16 +113,12 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getTotalPrice() {
-    _totalPrice = 0;
+  double getTotalPrice() {
+    double totalPrice = 0;
 
-    for (var item in products) {
-      Map<String, dynamic> cartItem =
-          _items.firstWhere((e) => e["id"] == item.id);
-      double? price = item.price * int.parse(cartItem["quantity"]!);
-
-      _totalPrice += price;
+    for (var item in _items) {
+      totalPrice += (item["price"] * int.parse(item["quantity"]!));
     }
-    notifyListeners();
+    return totalPrice;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
-import 'package:ecommerce_app/view/screens/rating_reviews_screnn.dart';
+import 'package:ecommerce_app/view/screens/product_screens/rating_reviews_screnn.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/ratign_container_widget.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/rating_Statistics.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/rating_no_widget.dart';

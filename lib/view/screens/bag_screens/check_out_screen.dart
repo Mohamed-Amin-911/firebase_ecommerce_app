@@ -2,7 +2,7 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
-import 'package:ecommerce_app/view/screens/add_address_screen.dart';
+import 'package:ecommerce_app/view/screens/bag_screens/add_address_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

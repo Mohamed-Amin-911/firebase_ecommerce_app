@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
-import 'package:ecommerce_app/view/screens/favourites_Screen.dart';
-import 'package:ecommerce_app/view/screens/filter_screen.dart';
+import 'package:ecommerce_app/view/screens/favorites_screens/favourites_Screen.dart';
+import 'package:ecommerce_app/view/screens/shop_screens/filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

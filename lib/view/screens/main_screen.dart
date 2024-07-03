@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/model/secure_Storage_class.dart';
-import 'package:ecommerce_app/view/screens/login_screen.dart';
+import 'package:ecommerce_app/view/screens/authentication_screens/login_screen.dart';
 import 'package:ecommerce_app/view/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 

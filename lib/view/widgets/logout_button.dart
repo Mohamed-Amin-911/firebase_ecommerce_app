@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/model/Auth_class.dart';
 import 'package:ecommerce_app/model/secure_storage_class.dart';
-import 'package:ecommerce_app/view/screens/login_screen.dart';
+import 'package:ecommerce_app/view/screens/authentication_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

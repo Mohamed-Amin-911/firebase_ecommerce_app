@@ -4,7 +4,7 @@ import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/promoCode_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/chech_out_screen.dart';
+import 'package:ecommerce_app/view/screens/bag_screens/check_out_screen.dart';
 import 'package:ecommerce_app/view/widgets/bag_screen_widgets/add_promo_code_screen.dart';
 import 'package:ecommerce_app/view/widgets/bag_screen_widgets/cart_item_card.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _BagScreenState extends State<BagScreen> {
   final promoController = TextEditingController();
 
   int quantity = 1;
-  double totalAmount = 0;
+
   @override
   void initState() {
     Provider.of<PromoCodePRovider>(context, listen: false).setDiscount(0);
@@ -32,7 +32,7 @@ class _BagScreenState extends State<BagScreen> {
     Provider.of<CartProvider>(context, listen: false).fetchCart(
       Provider.of<RetrieveProductProvider>(context, listen: false).products,
     );
-
+    Provider.of<CartProvider>(context, listen: false).getTotalPrice();
     super.initState();
   }
 
@@ -40,7 +40,8 @@ class _BagScreenState extends State<BagScreen> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> cartItems =
         Provider.of<CartProvider>(context, listen: true).items;
-    totalAmount = Provider.of<CartProvider>(context, listen: true).totalPrice;
+    double totalAmount =
+        Provider.of<CartProvider>(context, listen: true).getTotalPrice();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kColor.whiteColor,

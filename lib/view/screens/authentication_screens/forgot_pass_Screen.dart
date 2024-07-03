@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/model/Auth_class.dart';
-import 'package:ecommerce_app/view/screens/login_screen.dart';
+import 'package:ecommerce_app/view/screens/authentication_screens/login_screen.dart';
 import 'package:ecommerce_app/view/widgets/red_button_widget.dart';
 import 'package:ecommerce_app/view/widgets/txt_field_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';

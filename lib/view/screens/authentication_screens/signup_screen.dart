@@ -3,7 +3,7 @@ import 'package:ecommerce_app/constants/icon_assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/model/Auth_class.dart';
 import 'package:ecommerce_app/model/user_model.dart';
-import 'package:ecommerce_app/view/screens/login_screen.dart';
+import 'package:ecommerce_app/view/screens/authentication_screens/login_screen.dart';
 import 'package:ecommerce_app/view/widgets/red_button_widget.dart';
 import 'package:ecommerce_app/view/widgets/txt_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/provider/upload_user_provider.dart';
+import '../../../controller/provider/upload_user_provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

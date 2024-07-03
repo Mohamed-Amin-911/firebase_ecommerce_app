@@ -2,7 +2,7 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
-import 'package:ecommerce_app/view/screens/product_screen.dart';
+import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/add_review_widget.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/ratingNo_showPhoto.dart';
 import 'package:ecommerce_app/view/widgets/rating_reviews_Screen_widgets/rating_row_widget.dart';
