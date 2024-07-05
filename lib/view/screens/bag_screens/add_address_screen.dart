@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
 import 'package:ecommerce_app/view/widgets/bag_screen_widgets/add_address_screen_input_fields.dart';
-import 'package:ecommerce_app/view/widgets/elevated_btn_2.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,34 +74,49 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
               SizedBox(height: 10.h),
               //button
-
-              ElevatedBtn2(
-                text: "ADD ADDRESS",
-                function: () {
-                  Provider.of<AddressProvider>(context, listen: false)
-                      .addAddress({
-                    "fullName": fullNameController.text,
-                    "address": addressController.text,
-                    "city": cityController.text,
-                    "state": stateController.text,
-                    "zipcode": zipcodeController.text,
-                    "country": valueListenable.value!,
-                  }, context);
-                  Provider.of<AddressProvider>(context, listen: false)
-                      .setSelectedAddress({
-                    "fullName": fullNameController.text,
-                    "address": addressController.text,
-                    "city": cityController.text,
-                    "state": stateController.text,
-                    "zipcode": zipcodeController.text,
-                    "country": valueListenable.value!,
-                  });
-                  Provider.of<AddressProvider>(context, listen: false)
-                      .retrieveAddresses();
-                  Provider.of<AddressProvider>(context, listen: false)
-                      .retrieveSetSelectedAddress();
-                  Navigator.pop(context);
-                },
+              SizedBox(
+                width: 343.w,
+                height: 40.h,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                      backgroundColor: kColor.redColor,
+                      elevation: 0),
+                  onPressed: () {
+                    Provider.of<AddressProvider>(context, listen: false)
+                        .addAddress({
+                      "fullName": fullNameController.text,
+                      "address": addressController.text,
+                      "city": cityController.text,
+                      "state": stateController.text,
+                      "zipcode": zipcodeController.text,
+                      "country": valueListenable.value!,
+                    }, context);
+                    Provider.of<AddressProvider>(context, listen: false)
+                        .setSelectedAddress({
+                      "fullName": fullNameController.text,
+                      "address": addressController.text,
+                      "city": cityController.text,
+                      "state": stateController.text,
+                      "zipcode": zipcodeController.text,
+                      "country": valueListenable.value!,
+                    });
+                    Provider.of<AddressProvider>(context, listen: false)
+                        .retrieveAddresses();
+                    Provider.of<AddressProvider>(context, listen: false)
+                        .retrieveSetSelectedAddress();
+                    Navigator.pop(context);
+                    ;
+                  },
+                  child: Text(
+                    "ADD ADDRESS",
+                    style: appStyle(
+                        fw: FontWeight.w500,
+                        size: 14.sp,
+                        color: kColor.whiteColor),
+                  ),
+                ),
               ),
             ],
           ),

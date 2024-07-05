@@ -4,8 +4,6 @@ import 'package:ecommerce_app/model/secure_storage_class.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-final _db = FirebaseFirestore.instance;
-
 class FavoritesProvider extends ChangeNotifier {
   bool isFavourited = false;
   List<String> _favorites = [];

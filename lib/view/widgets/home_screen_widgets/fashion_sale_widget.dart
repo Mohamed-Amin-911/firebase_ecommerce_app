@@ -22,6 +22,7 @@ class _FashionSaleWidgetState extends State<FashionSaleWidget> {
     return Stack(
       children: [
         Image.asset(
+          alignment: Alignment.topCenter,
           KImageAssets.main,
           fit: BoxFit.fitWidth,
           width: 376.w,
@@ -29,7 +30,7 @@ class _FashionSaleWidgetState extends State<FashionSaleWidget> {
         ),
         Positioned(
           left: 15.w,
-          top: 344.h,
+          top: 314.h,
           child: Text(
             "Fashion\nsale",
             style: appStyle(
@@ -39,7 +40,7 @@ class _FashionSaleWidgetState extends State<FashionSaleWidget> {
         ),
         Positioned(
             left: 10.w,
-            top: 448.h,
+            top: 418.h,
             child: SizedBox(
               width: 160.w,
               height: 36.h,
@@ -48,7 +49,10 @@ class _FashionSaleWidgetState extends State<FashionSaleWidget> {
                   await productProvider.uploadProducts(products);
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: kColor.redColor, elevation: 0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    backgroundColor: kColor.redColor,
+                    elevation: 0),
                 child: Text(
                   "Check",
                   style: appStyle(

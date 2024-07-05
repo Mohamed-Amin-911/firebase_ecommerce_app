@@ -2,7 +2,8 @@ import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
-import 'package:ecommerce_app/view/screens/bag_screens/add_address_screen.dart';
+import 'package:ecommerce_app/view/widgets/bag_screen_widgets/address_widget.dart';
+import 'package:ecommerce_app/view/widgets/bag_screen_widgets/deiver_&_total_amount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -58,86 +59,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           children: [
             SizedBox(height: 31.h),
             //address
+            AddressWidget(
+                addresses: addresses, selectedAddress: selectedAddress),
 
-            Text(
-              'Shipping address',
-              style: appStyle(
-                  fw: FontWeight.w600, size: 16.sp, color: kColor.textColor),
-            ),
-            SizedBox(height: 21.h),
-            Padding(
-              padding: EdgeInsets.only(left: 28.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  addresses.isEmpty
-                      ? Row(
-                          children: [
-                            Text(
-                              'No address',
-                              style: appStyle(
-                                  fw: FontWeight.w500,
-                                  size: 14.sp,
-                                  color: kColor.textColor),
-                            ),
-                            const Spacer(),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AddAddressScreen(),
-                                    ));
-                              },
-                              child: Text(
-                                'Add',
-                                style: appStyle(
-                                    fw: FontWeight.w500,
-                                    size: 14.sp,
-                                    color: kColor.redColor),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  selectedAddress["fullName"]!,
-                                  style: appStyle(
-                                      fw: FontWeight.w500,
-                                      size: 14.sp,
-                                      color: kColor.textColor),
-                                ),
-                                const Spacer(),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Change',
-                                    style: appStyle(
-                                        fw: FontWeight.w500,
-                                        size: 14.sp,
-                                        color: kColor.redColor),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "${selectedAddress["address"]!}\n${selectedAddress["city"]}, ${selectedAddress["state"]!.substring(0, 1).toUpperCase()} ${selectedAddress["zipcode"]!}, ${selectedAddress["country"]!}",
-                              style: appStyle(
-                                      fw: FontWeight.w400,
-                                      size: 14.sp,
-                                      color: kColor.textColor)
-                                  .copyWith(height: 1.2.h),
-                            ),
-                          ],
-                        ),
-                ],
-              ),
-            ),
             SizedBox(height: 77.h),
             //payment
             Row(
@@ -178,125 +102,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               ],
             ),
 
-            //delivery
             SizedBox(height: 51.h),
-            Text(
-              'Delivery method',
-              style: appStyle(
-                  fw: FontWeight.w600, size: 16.sp, color: kColor.textColor),
-            ),
-            SizedBox(height: 21.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(KImageAssets.fedex),
-                      SizedBox(height: 11.h),
-                      Text(
-                        ' 2-3 days',
-                        style: appStyle(
-                            fw: FontWeight.w500,
-                            size: 12.sp,
-                            color: kColor.text2Color),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(KImageAssets.usps),
-                      SizedBox(height: 11.h),
-                      Text(
-                        ' 2-3 days',
-                        style: appStyle(
-                            fw: FontWeight.w500,
-                            size: 12.sp,
-                            color: kColor.text2Color),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(KImageAssets.dhl),
-                      SizedBox(height: 11.h),
-                      Text(
-                        ' 2-3 days',
-                        style: appStyle(
-                            fw: FontWeight.w500,
-                            size: 12.sp,
-                            color: kColor.text2Color),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 52.h),
-            //total amount
-            Row(
-              children: [
-                Text(
-                  'Order:',
-                  style: appStyle(
-                      fw: FontWeight.w500,
-                      size: 14.sp,
-                      color: kColor.text2Color),
-                ),
-                const Spacer(),
-                Text(
-                  '${widget.totalPrice.toInt()}\$',
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 16.sp,
-                      color: kColor.textColor),
-                ),
-              ],
-            ),
-            SizedBox(height: 17.h),
-            Row(
-              children: [
-                Text(
-                  'Delivery:',
-                  style: appStyle(
-                      fw: FontWeight.w500,
-                      size: 14.sp,
-                      color: kColor.text2Color),
-                ),
-                const Spacer(),
-                Text(
-                  '15\$',
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 16.sp,
-                      color: kColor.textColor),
-                ),
-              ],
-            ),
-            SizedBox(height: 17.h),
-            Row(
-              children: [
-                Text(
-                  'Summary:',
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 14.sp,
-                      color: kColor.text2Color),
-                ),
-                const Spacer(),
-                Text(
-                  '${widget.totalPrice.toInt() + 15}\$',
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 16.sp,
-                      color: kColor.textColor),
-                ),
-              ],
-            ),
+            DeliverAndTotalAmountWidget(widget: widget),
           ],
         ),
       ),

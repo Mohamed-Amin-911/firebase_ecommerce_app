@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
       body: Expanded(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const FashionSaleWidget(),

@@ -223,7 +223,6 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,

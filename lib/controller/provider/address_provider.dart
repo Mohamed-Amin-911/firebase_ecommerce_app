@@ -4,14 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddressProvider extends ChangeNotifier {
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   List<Map<String, dynamic>> _addresses = [];
   List<Map<String, dynamic>> get addresses => _addresses;
 
   Map<String, dynamic> _selectedShippingAddress = {};
   Map<String, dynamic> get selectedShippingAddress => _selectedShippingAddress;
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
+  int _selectedIndex = 0;
+  int get selectedIndex => _selectedIndex;
+  Future<void> setselectedIndex(int index) async {
+    _selectedIndex = index;
+
+    notifyListeners();
+  }
 
   Future<void> addAddress(
       Map<String, String> address, BuildContext context) async {
@@ -106,7 +114,7 @@ class AddressProvider extends ChangeNotifier {
   }
 
   Future<void> retrieveSetSelectedAddress() async {
-    _isLoading = true;
+    // _isLoading = true;
     notifyListeners();
     final userId = await SecureStorage.readId("id");
     try {
