@@ -18,10 +18,19 @@ class KImageAssets {
   static const String tenPromo = "assets/images/10_promo.png";
   static const String fifteenPromo = "assets/images/15_promo.png";
 
-  static const String mastercard = "assets/images/mastercard.png";
+  static const String mastercard = 'assets/images/mastercard.png';
+  static const String mastercard2 = 'assets/images/mastercard2.png';
 
   static const String visa = "assets/images/visa.png";
+  static const String visa2 = "assets/images/visa2.png";
+
   static const String fedex = "assets/images/fedex.png";
   static const String usps = "assets/images/usps.png";
   static const String dhl = "assets/images/dhl.png";
+
+  static const String chip = "assets/images/chip.png";
+  static const String ellipse = "assets/images/Ellipse.png";
+  static const String vector = "assets/images/Vector.png";
+
+  static const String success = "assets/images/bags.png";
 }

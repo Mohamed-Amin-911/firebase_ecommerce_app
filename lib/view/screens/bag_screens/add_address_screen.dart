@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
-import 'package:ecommerce_app/view/widgets/bag_screen_widgets/add_address_screen_input_fields.dart';
+import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/add_address_screen_input_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,67 +58,72 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         child: Padding(
           padding:
               EdgeInsets.only(left: 16.w, right: 16.w, top: 16.w, bottom: 16.w),
-          child: Column(
-            children: [
-              SizedBox(height: 31.h),
-              // input fields
-              AddressInputFields(
-                fullNameController: fullNameController,
-                addressController: addressController,
-                cityController: cityController,
-                stateController: stateController,
-                zipcodeController: zipcodeController,
-                countries: countries,
-                valueListenable: valueListenable,
-              ),
-
-              SizedBox(height: 10.h),
-              //button
-              SizedBox(
-                width: 343.w,
-                height: 40.h,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
-                      backgroundColor: kColor.redColor,
-                      elevation: 0),
-                  onPressed: () {
-                    Provider.of<AddressProvider>(context, listen: false)
-                        .addAddress({
-                      "fullName": fullNameController.text,
-                      "address": addressController.text,
-                      "city": cityController.text,
-                      "state": stateController.text,
-                      "zipcode": zipcodeController.text,
-                      "country": valueListenable.value!,
-                    }, context);
-                    Provider.of<AddressProvider>(context, listen: false)
-                        .setSelectedAddress({
-                      "fullName": fullNameController.text,
-                      "address": addressController.text,
-                      "city": cityController.text,
-                      "state": stateController.text,
-                      "zipcode": zipcodeController.text,
-                      "country": valueListenable.value!,
-                    });
-                    Provider.of<AddressProvider>(context, listen: false)
-                        .retrieveAddresses();
-                    Provider.of<AddressProvider>(context, listen: false)
-                        .retrieveSetSelectedAddress();
-                    Navigator.pop(context);
-                    ;
-                  },
-                  child: Text(
-                    "ADD ADDRESS",
-                    style: appStyle(
-                        fw: FontWeight.w500,
-                        size: 14.sp,
-                        color: kColor.whiteColor),
+          child: Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 15.h),
+                  // input fields
+                  AddressInputFields(
+                    fullNameController: fullNameController,
+                    addressController: addressController,
+                    cityController: cityController,
+                    stateController: stateController,
+                    zipcodeController: zipcodeController,
+                    countries: countries,
+                    valueListenable: valueListenable,
                   ),
-                ),
+
+                  SizedBox(height: 10.h),
+                  //button
+                  SizedBox(
+                    width: 343.w,
+                    height: 48.h,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                          backgroundColor: kColor.redColor,
+                          elevation: 0),
+                      onPressed: () {
+                        Provider.of<AddressProvider>(context, listen: false)
+                            .addAddress({
+                          "fullName": fullNameController.text,
+                          "address": addressController.text,
+                          "city": cityController.text,
+                          "state": stateController.text,
+                          "zipcode": zipcodeController.text,
+                          "country": valueListenable.value!,
+                        }, context);
+                        Provider.of<AddressProvider>(context, listen: false)
+                            .setSelectedAddress({
+                          "fullName": fullNameController.text,
+                          "address": addressController.text,
+                          "city": cityController.text,
+                          "state": stateController.text,
+                          "zipcode": zipcodeController.text,
+                          "country": valueListenable.value!,
+                        });
+                        Provider.of<AddressProvider>(context, listen: false)
+                            .retrieveAddresses();
+                        Provider.of<AddressProvider>(context, listen: false)
+                            .retrieveSetSelectedAddress();
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "ADD ADDRESS",
+                        style: appStyle(
+                            fw: FontWeight.w500,
+                            size: 14.sp,
+                            color: kColor.whiteColor),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

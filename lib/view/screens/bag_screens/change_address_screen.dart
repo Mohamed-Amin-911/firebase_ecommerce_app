@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
 import 'package:ecommerce_app/view/screens/bag_screens/add_address_screen.dart';
-import 'package:ecommerce_app/view/widgets/bag_screen_widgets/address_card.dart';
+import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/address_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

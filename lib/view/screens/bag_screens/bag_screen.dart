@@ -75,7 +75,7 @@ class _BagScreenState extends State<BagScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 160.h),
+                          SizedBox(height: 120.h),
                           const Center(
                             child: CircularProgressIndicator(
                               color: kColor.textColor,

@@ -69,7 +69,7 @@ class AddressWidget extends StatelessWidget {
                             Text(
                               selectedAddress["fullName"]!,
                               style: appStyle(
-                                  fw: FontWeight.w500,
+                                  fw: FontWeight.w600,
                                   size: 14.sp,
                                   color: kColor.textColor),
                             ),

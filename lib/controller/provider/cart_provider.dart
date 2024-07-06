@@ -31,8 +31,7 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> removeFromCart(
-      Map<String, dynamic> productData, List<Product> prods) async {
+  Future<void> removeFromCart(Map<String, dynamic> productData) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -42,7 +41,7 @@ class CartProvider extends ChangeNotifier {
     await userRef.update({
       "cart": FieldValue.arrayRemove([productData]),
     });
-    // fetchCart(prods);
+
     notifyListeners();
   }
 

@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/constants/colors.dart';
-import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
-import 'package:ecommerce_app/view/widgets/bag_screen_widgets/address_widget.dart';
-import 'package:ecommerce_app/view/widgets/bag_screen_widgets/deiver_&_total_amount_widget.dart';
+import 'package:ecommerce_app/controller/provider/credit_card_provider.dart';
+import 'package:ecommerce_app/view/screens/bag_screens/success_screen.dart';
+import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/address_widget.dart';
+import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/deiver_&_total_amount_widget.dart';
+import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/payment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     Provider.of<AddressProvider>(context, listen: false).retrieveAddresses();
     Provider.of<AddressProvider>(context, listen: false)
         .retrieveSetSelectedAddress();
+
+    Provider.of<CreditCardProvider>(context, listen: false).retrieveCards();
+    Provider.of<CreditCardProvider>(context, listen: false)
+        .retrieveDefaultCard();
   }
 
   @override
@@ -33,6 +39,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     Map<String, dynamic> selectedAddress =
         Provider.of<AddressProvider>(context, listen: true)
             .selectedShippingAddress;
+
+    List<Map<String, dynamic>> cards =
+        Provider.of<CreditCardProvider>(context, listen: true).cards;
+
+    Map<String, dynamic> defaultCard =
+        Provider.of<CreditCardProvider>(context, listen: true).defaultCard;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -62,48 +74,38 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             AddressWidget(
                 addresses: addresses, selectedAddress: selectedAddress),
 
-            SizedBox(height: 77.h),
+            SizedBox(height: 45.h),
             //payment
-            Row(
-              children: [
-                Text(
-                  'Payment',
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 16.sp,
-                      color: kColor.textColor),
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Change',
-                    style: appStyle(
-                        fw: FontWeight.w500,
-                        size: 14.sp,
-                        color: kColor.redColor),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 17.h),
-            Row(
-              children: [
-                SizedBox(width: 16.w),
-                Image.asset(KImageAssets.mastercard),
-                SizedBox(width: 33.w),
-                Text(
-                  '**** **** **** 3947',
-                  style: appStyle(
-                      fw: FontWeight.w500,
-                      size: 14.sp,
-                      color: kColor.textColor),
-                ),
-              ],
-            ),
+            PaymentWidget(cards: cards, defaultCard: defaultCard),
 
             SizedBox(height: 51.h),
             DeliverAndTotalAmountWidget(widget: widget),
+            SizedBox(height: 23.h),
+            SizedBox(
+              width: 343.w,
+              height: 48.h,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    backgroundColor: kColor.redColor,
+                    elevation: 0),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SuccessScreen(),
+                      ));
+                },
+                child: Text(
+                  "SUBMIT ORDER",
+                  style: appStyle(
+                      fw: FontWeight.w500,
+                      size: 14.sp,
+                      color: kColor.whiteColor),
+                ),
+              ),
+            ),
           ],
         ),
       ),

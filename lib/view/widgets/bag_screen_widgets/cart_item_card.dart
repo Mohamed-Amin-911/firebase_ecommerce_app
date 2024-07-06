@@ -87,7 +87,7 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                         quantity--;
                         if (quantity == 0) {
                           Provider.of<CartProvider>(context, listen: false)
-                              .removeFromCart(cartItem, products);
+                              .removeFromCart(cartItem);
                           Provider.of<CartProvider>(context, listen: false)
                               .getProductsFromFavs(prods);
                           Provider.of<CartProvider>(context, listen: false)

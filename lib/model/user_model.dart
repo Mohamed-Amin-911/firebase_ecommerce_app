@@ -8,8 +8,8 @@ class Userr {
   final String? image;
   List<String> favourites;
   List<Map<String, dynamic>> cart;
-  List<Map<String, String>> cards;
-
+  List<Map<String, dynamic>> cards;
+  Map<String, dynamic> defaultCard;
   List<Map<String, String>> shippingAddress;
 
   Map<String, String> selectedShippingAddress;
@@ -24,6 +24,7 @@ class Userr {
     this.cards = const [],
     this.shippingAddress = const [],
     this.selectedShippingAddress = const {},
+    this.defaultCard = const {},
   });
 
   factory Userr.fromJson(Map<String, dynamic> json) => Userr(
@@ -38,6 +39,7 @@ class Userr {
         shippingAddress: List<Map<String, String>>.from(
             json["shippingAddress"].map((x) => x)),
         selectedShippingAddress: json["selectedShippingAddress"],
+        defaultCard: json["defaultCard"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,6 +52,7 @@ class Userr {
         "cart": cart.map((x) => x).toList(),
         "cards": cards.map((x) => x).toList(),
         "shippingAddress": shippingAddress.map((x) => x).toList(),
-        "selectedShippingAddress": selectedShippingAddress
+        "selectedShippingAddress": selectedShippingAddress,
+        "defaultCard": defaultCard,
       };
 }
