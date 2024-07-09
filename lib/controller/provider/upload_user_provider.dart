@@ -32,6 +32,7 @@ class UploadUserProvider extends ChangeNotifier {
         "shippingAddress": user.shippingAddress.map((x) => x).toList(),
         "selectedShippingAddress": user.selectedShippingAddress,
         "defaultCard": user.defaultCard,
+        "orders": user.orders.map((x) => x).toList(),
       };
 
       batch.set(docRef, data);

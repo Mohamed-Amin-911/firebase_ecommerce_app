@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
@@ -54,8 +55,8 @@ class _ProductCardState extends State<ProductCard> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    widget.image,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.image,
                     width: 162.w,
                     height: 184.h,
                     fit: BoxFit.cover,

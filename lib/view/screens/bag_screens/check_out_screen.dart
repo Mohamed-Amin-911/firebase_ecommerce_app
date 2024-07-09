@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/address_provider.dart';
+import 'package:ecommerce_app/controller/provider/cart_provider.dart';
 import 'package:ecommerce_app/controller/provider/credit_card_provider.dart';
+import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
+import 'package:ecommerce_app/controller/provider/retrieve_user_info_provider.dart';
 import 'package:ecommerce_app/view/screens/bag_screens/success_screen.dart';
 import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/address_widget.dart';
 import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/deiver_&_total_amount_widget.dart';
@@ -9,6 +12,7 @@ import 'package:ecommerce_app/view/widgets/check_out_screen_widgets/payment_widg
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key, required this.totalPrice});
@@ -21,7 +25,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   void initState() {
     super.initState();
-
+    Provider.of<CartProvider>(context, listen: false).fetchCart(
+      Provider.of<RetrieveProductProvider>(context, listen: false).products,
+    );
     Provider.of<AddressProvider>(context, listen: false).retrieveAddresses();
     Provider.of<AddressProvider>(context, listen: false)
         .retrieveSetSelectedAddress();
@@ -29,10 +35,24 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     Provider.of<CreditCardProvider>(context, listen: false).retrieveCards();
     Provider.of<CreditCardProvider>(context, listen: false)
         .retrieveDefaultCard();
+    Provider.of<RetrieveUserProvider>(context, listen: false).fetchUser();
   }
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    int year = now.year;
+    int month = now.month;
+    int day = now.day;
+
+    final List<Map<String, dynamic>> cartItems =
+        Provider.of<CartProvider>(context, listen: true).items;
+
+    final random = Random();
+
+    // final Userr user =
+    //     Provider.of<RetrieveUserProvider>(context, listen: true).user;
+
     List<Map<String, dynamic>> addresses =
         Provider.of<AddressProvider>(context, listen: true).addresses;
 
@@ -91,6 +111,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     backgroundColor: kColor.redColor,
                     elevation: 0),
                 onPressed: () {
+                  Provider.of<CartProvider>(context, listen: false).addOrder({
+                    "orderNumber": "${random.nextInt(10000000)}",
+                    "orderDate":
+                        "${month > 10 ? "0$month" : month}-${day > 10 ? "0$day" : day}-$year",
+                    "trackingNumber": "IW${random.nextInt(1000000000)}",
+                    "orderStatus": "processing",
+                    "orderTotal": '${widget.totalPrice.toInt() + 15}\$',
+                    "quantity": cartItems.length,
+                    "orderItems": cartItems,
+                  }, context);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

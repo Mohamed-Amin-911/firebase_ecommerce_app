@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
@@ -82,9 +83,10 @@ class _ProductScreenState extends State<ProductScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //image
-                Image.network(
+                CachedNetworkImage(
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   fit: BoxFit.cover,
-                  product.image,
+                  imageUrl: product.image,
                   width: 375.w,
                   height: 413.h,
                 ),

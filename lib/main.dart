@@ -5,6 +5,7 @@ import 'package:ecommerce_app/controller/provider/credit_card_provider.dart';
 import 'package:ecommerce_app/controller/provider/favourites_provider.dart';
 import 'package:ecommerce_app/controller/provider/promoCode_provider.dart';
 import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dart';
+import 'package:ecommerce_app/controller/provider/retrieve_user_info_provider.dart';
 import 'package:ecommerce_app/controller/provider/review_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_products_provider.dart';
 import 'package:ecommerce_app/controller/provider/upload_user_provider.dart';
@@ -31,6 +32,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => PromoCodePRovider()),
     ChangeNotifierProvider(create: (_) => AddressProvider()),
     ChangeNotifierProvider(create: (_) => CreditCardProvider()),
+    ChangeNotifierProvider(create: (_) => RetrieveUserProvider()),
   ], child: const MyApp()));
 }
 

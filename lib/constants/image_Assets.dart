@@ -33,4 +33,6 @@ class KImageAssets {
   static const String vector = "assets/images/Vector.png";
 
   static const String success = "assets/images/bags.png";
+
+  static const String user = "assets/images/user.png";
 }

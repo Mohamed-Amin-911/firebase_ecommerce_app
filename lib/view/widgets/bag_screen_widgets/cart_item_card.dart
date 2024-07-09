@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/cart_provider.dart';
@@ -27,8 +28,16 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
           ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-            child: Image.network(
-              product.image,
+            child: CachedNetworkImage(
+              imageUrl: product.image,
+              placeholder: (context, url) => SizedBox(
+                height: 50.h,
+                width: 50.w,
+                child: const CircularProgressIndicator(
+                  color: kColor.textColor,
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
               height: 104.h,
               width: 104.w,
               fit: BoxFit.cover,

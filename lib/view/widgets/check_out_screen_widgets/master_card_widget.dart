@@ -85,7 +85,7 @@ class MasterCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 169.w,
+              left: 159.w,
               bottom: 23.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

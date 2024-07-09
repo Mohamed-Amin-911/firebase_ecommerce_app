@@ -120,4 +120,21 @@ class CartProvider extends ChangeNotifier {
     }
     return totalPrice;
   }
+
+  Future<void> addOrder(
+      Map<String, dynamic> productData, BuildContext context) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final userId = await SecureStorage.readId("id");
+
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    await userRef.update({
+      "orders": FieldValue.arrayUnion([productData]),
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("order placed")),
+    );
+    notifyListeners();
+  }
 }

@@ -197,7 +197,6 @@ import 'package:ecommerce_app/view/screens/favorites_screens/favourites_Screen.d
 import 'package:ecommerce_app/view/screens/home_screens/home_screen.dart';
 import 'package:ecommerce_app/view/screens/profile_screens/profile_screen.dart';
 import 'package:ecommerce_app/view/screens/shop_screens/shop_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
