@@ -39,7 +39,7 @@ class _ReviewsNoAndshowPhotoWidgetState
     return Row(
       children: [
         Text(
-          "${Provider.of<ReviewProvider>(context, listen: true).reviews.isEmpty ? 0 : widget.widget.product.reviews.length}",
+          "${Provider.of<ReviewProvider>(context, listen: true).reviews.toString() == "[]" ? 0 : Provider.of<ReviewProvider>(context, listen: true).reviews.length}",
           style: appStyle(
               fw: FontWeight.w600, size: 24.sp, color: kColor.textColor),
         ),

@@ -48,7 +48,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10.h),
-            OrderItemCard(order: widget.order)
+            widget.order.isEmpty
+                ? Container()
+                : OrderItemCard(order: widget.order),
           ],
         ),
       ),

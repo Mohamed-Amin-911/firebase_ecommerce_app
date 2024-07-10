@@ -20,7 +20,6 @@ class ReviewProvider extends ChangeNotifier {
             .split(", ")
             .toList() ??
         [];
-    print(reviews);
     notifyListeners();
   }
 

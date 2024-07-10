@@ -30,13 +30,6 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                 topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
             child: CachedNetworkImage(
               imageUrl: product.image,
-              placeholder: (context, url) => SizedBox(
-                height: 50.h,
-                width: 50.w,
-                child: const CircularProgressIndicator(
-                  color: kColor.textColor,
-                ),
-              ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               height: 104.h,
               width: 104.w,

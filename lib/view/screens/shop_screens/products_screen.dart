@@ -107,7 +107,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       children: [
                         SizedBox(height: 160.h),
                         const CircularProgressIndicator(
-                          color: kColor.redColor,
+                          color: kColor.textColor,
                         ),
                       ],
                     ))

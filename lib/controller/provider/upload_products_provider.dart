@@ -38,7 +38,8 @@ class UploadProductProvider extends ChangeNotifier {
           'reviews': product.reviews,
           'description': product.description,
         };
-
+        // batch.delete(docRef);
+        // notifyListeners();
         batch.set(docRef, data);
       }
 

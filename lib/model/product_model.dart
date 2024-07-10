@@ -92,45 +92,72 @@ class Product {
       };
 }
 
-List<Product> generateProducts() {
-  final List<String> names = [
-    "T-Shirt SPANISH",
-    "Cool Sneakers",
-    "Elegant Blazer",
-    "Summer Dress",
-    "Casual Jeans",
-    // Add more unique product names
-  ];
+// List<Product> generateProducts() {
+//   final List<String> names = [
+//     "T-Shirt SPANISH",
+//     "Cool Sneakers",
+//     "Elegant Blazer",
+//     "Summer Dress",
+//     "Casual Jeans",
+//     // Add more unique product names
+//   ];
 
-  final List<String> images = [
-    "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1688821126709-895e6465b9a2?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        "https://images.unsplash.com/photo-1517942420142-6a296f9ee4b1?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    // Add more unique image URLs
-  ];
+//   final List<String> images = [
+//     "https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//     "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//     "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//     "https://plus.unsplash.com/premium_photo-1688821126709-895e6465b9a2?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+//         "https://images.unsplash.com/photo-1517942420142-6a296f9ee4b1?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+//     // Add more unique image URLs
+//   ];
 
-  final List<String> stores = [
-    "Mango",
-    "Zara",
-    "H&M",
-    "Uniqlo",
-    "Gap",
-  ];
-  // final List<String> colors = [
-  //   "0xff020202",
-  //   "0xffF6F6F6",
-  //   "0xffB82222",
-  //   "0xffBEA9A9",
-  //   "0xffE2BB8D",
-  //   "0xff151867",
-  // ];
-  final Random random = Random();
+//   final List<String> stores = [
+//     "Mango",
+//     "Zara",
+//     "H&M",
+//     "Uniqlo",
+//     "Gap",
+//   ];
 
-  List<Product> products = List.generate(100, (index) {
-    return Product(
-      category: Category.values[random.nextInt(Category.values.length)].name,
+//   final Random random = Random();
+
+//   List<Product> products = List.generate(100, (index) {
+//     return Product(
+//       category: Category.values[random.nextInt(Category.values.length)].name,
+//       colors: [
+//         " ",
+//         "0xff020202",
+//         "0xffF6F6F6",
+//         "0xffB82222",
+//         "0xffBEA9A9",
+//         "0xffE2BB8D",
+//         "0xff151867",
+//       ],
+//       gender: Gender.values[random.nextInt(Gender.values.length)].name,
+//       image: images[random.nextInt(images.length)],
+//       name: names[random.nextInt(names.length)],
+//       price: 5 + random.nextInt(1000).toDouble(), // Prices between 5 and 104
+//       rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
+//       sizes: [" ", "XS", "S", "M", "L", "XL"],
+//       subcategory:
+//           SubCategory.values[random.nextInt(SubCategory.values.length)].name,
+//       reviews: [], // Add review texts if needed
+//       store: stores[random.nextInt(stores.length)],
+//       description:
+//           "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
+//     );
+//   });
+
+//   return products;
+// }
+
+// List<Product> products = generateProducts();
+
+List<Product> products = [
+  Product(
+      reviews: [],
+      rating: 0,
+      store: "ZARA",
       colors: [
         " ",
         "0xff020202",
@@ -140,22 +167,13 @@ List<Product> generateProducts() {
         "0xffE2BB8D",
         "0xff151867",
       ],
-      gender: Gender.values[random.nextInt(Gender.values.length)].name,
-      image: images[random.nextInt(images.length)],
-      name: names[random.nextInt(names.length)],
-      price: 5 + random.nextInt(1000).toDouble(), // Prices between 5 and 104
-      rating: 1 + random.nextInt(5).toDouble(), // Ratings between 1 and 5
+      gender: Gender.women.name,
+      price: 123,
       sizes: [" ", "XS", "S", "M", "L", "XL"],
-      subcategory:
-          SubCategory.values[random.nextInt(SubCategory.values.length)].name,
-      reviews: [], // Add review texts if needed
-      store: stores[random.nextInt(stores.length)],
-      description:
-          "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
-    );
-  });
-
-  return products;
-}
-
-List<Product> products = generateProducts();
+      name: "Dress",
+      category: Category.neww.name,
+      subcategory: SubCategory.dresses.name,
+      description: "A beautiful long green dress on a hanger on a white wall",
+      image:
+          "https://images.unsplash.com/flagged/photo-1585052201332-b8c0ce30972f?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+];

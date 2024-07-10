@@ -1,11 +1,14 @@
 import 'package:ecommerce_app/constants/colors.dart';
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
+import 'package:ecommerce_app/controller/provider/retrieve_user_info_provider.dart';
+import 'package:ecommerce_app/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class ReviewCard extends StatelessWidget {
+class ReviewCard extends StatefulWidget {
   const ReviewCard({
     super.key,
     required this.review,
@@ -15,9 +18,23 @@ class ReviewCard extends StatelessWidget {
   final String review;
 
   @override
+  State<ReviewCard> createState() => _ReviewCardState();
+}
+
+class _ReviewCardState extends State<ReviewCard> {
+  @override
+  void initState() {
+    super.initState();
+
+    Provider.of<RetrieveUserProvider>(context, listen: false).fetchUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final Userr user =
+        Provider.of<RetrieveUserProvider>(context, listen: true).user;
     return Container(
-      margin: EdgeInsets.only(right: 50.w, bottom: 10.h),
+      margin: EdgeInsets.only(right: 50.w, bottom: 30.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,14 +44,16 @@ class ReviewCard extends StatelessWidget {
                   width: 32.w,
                   height: 32.w,
                   fit: BoxFit.cover,
-                  KImageAssets.userImage)),
+                  user.image == null
+                      ? KImageAssets.user
+                      : KImageAssets.userImage)),
           Padding(
             padding: EdgeInsets.only(left: 56.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Helene Moore",
+                  user.name,
                   style: appStyle(
                       fw: FontWeight.w500,
                       size: 14.sp,
@@ -44,7 +63,7 @@ class ReviewCard extends StatelessWidget {
                 Row(
                   children: [
                     RatingBar.builder(
-                      initialRating: rating,
+                      initialRating: widget.rating,
                       minRating: 0,
                       direction: Axis.horizontal,
                       ignoreGestures: true,
@@ -71,7 +90,7 @@ class ReviewCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  review,
+                  widget.review,
                   style: appStyle(
                           fw: FontWeight.w500,
                           size: 14.sp,

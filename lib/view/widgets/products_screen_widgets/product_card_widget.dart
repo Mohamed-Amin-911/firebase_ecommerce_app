@@ -172,7 +172,7 @@ class _ProductCardState extends State<ProductCard> {
                               ? const Center(
                                   child: Icon(
                                     Icons.favorite_rounded,
-                                    color: kColor.redColor,
+                                    color: kColor.whiteColor,
                                   ),
                                 )
                               : const Center(

@@ -50,9 +50,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
     final random = Random();
 
-    // final Userr user =
-    //     Provider.of<RetrieveUserProvider>(context, listen: true).user;
-
     List<Map<String, dynamic>> addresses =
         Provider.of<AddressProvider>(context, listen: true).addresses;
 

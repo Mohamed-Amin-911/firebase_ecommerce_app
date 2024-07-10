@@ -100,7 +100,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Knitwear",
+                                subcat: "knitwear",
                               ),
                             ));
                       }),
@@ -113,7 +113,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Blazers",
+                                subcat: "blazers",
                               ),
                             ));
                       }),
@@ -126,7 +126,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Outerwear",
+                                subcat: "outerwear",
                               ),
                             ));
                       }),
@@ -139,7 +139,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Pants",
+                                subcat: "pants",
                               ),
                             ));
                       }),
@@ -152,7 +152,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Jeans",
+                                subcat: "jeans",
                               ),
                             ));
                       }),
@@ -165,7 +165,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Shorts",
+                                subcat: "shorts",
                               ),
                             ));
                       }),
@@ -178,7 +178,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Skirts",
+                                subcat: "skirts",
                               ),
                             ));
                       }),
@@ -191,7 +191,7 @@ class SubCategoryScreen extends StatelessWidget {
                               builder: (context) => ProductsScreen(
                                 cat: cat,
                                 gender: gender,
-                                subcat: "Dresses",
+                                subcat: "dresses",
                               ),
                             ));
                       }),
