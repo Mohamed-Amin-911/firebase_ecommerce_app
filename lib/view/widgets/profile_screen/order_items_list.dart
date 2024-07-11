@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ListView orderItemsList(List<Product> products, Map<String, dynamic> order) {
   return ListView.builder(
     shrinkWrap: true,
-    physics: NeverScrollableScrollPhysics(),
+    physics: const NeverScrollableScrollPhysics(),
     itemCount: order["quantity"],
     itemBuilder: (context, index) {
       final Product product = products
