@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/constants/image_Assets.dart';
 import 'package:ecommerce_app/constants/text_style.dart';
 import 'package:ecommerce_app/controller/provider/upload_products_provider.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/constants/colors.dart';
 
@@ -21,12 +23,16 @@ class _FashionSaleWidgetState extends State<FashionSaleWidget> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          alignment: Alignment.topCenter,
-          KImageAssets.main,
-          fit: BoxFit.fitWidth,
-          width: 376.w,
-          height: 536.h,
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.r),
+              bottomRight: Radius.circular(20.r)),
+          child: CachedNetworkImage(
+            imageUrl: KImageAssets.main,
+            width: 376.w,
+            height: 536.h,
+            fit: BoxFit.cover,
+          ),
         ),
         Positioned(
           left: 15.w,

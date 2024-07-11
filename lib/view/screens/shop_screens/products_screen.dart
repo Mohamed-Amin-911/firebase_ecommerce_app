@@ -125,7 +125,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             Text(
                               'No products',
                               style: appStyle(
-                                  fw: FontWeight.bold,
+                                  fw: FontWeight.w400,
                                   size: 20.sp,
                                   color: kColor.textColor),
                             ),

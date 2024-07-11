@@ -1,19 +1,32 @@
 class KImageAssets {
-  static const String main = "assets/images/main.png";
+  static const String main =
+      "https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?q=80&w=1892&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   static const String main2 = "assets/images/main2.png";
   static const String main3 = "assets/images/main3.png";
-  static const String womanNew = "assets/images/woman-new.jpg";
-  static const String womanClothes = "assets/images/woman-clothes.jpg";
-  static const String womanShoes = "assets/images/woman-shoes.jpg";
-  static const String womanAccesories = "assets/images/woman-accesories.jpg";
-  static const String kidsNew = "assets/images/kids-new.jpg";
-  static const String kidsClothes = "assets/images/kids-clothes.jpg";
-  static const String kidsShoes = "assets/images/kids-shoes.jpg";
-  static const String kidsAccesories = "assets/images/kids-accesories.jpg";
-  static const String menNew = "assets/images/men-new.jpg";
-  static const String menClothes = "assets/images/men-clothes.jpg";
-  static const String menShoes = "assets/images/men-shoes.jpg";
-  static const String menAccesories = "assets/images/men-accesories.jpg";
+  static const String womanNew =
+      "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String womanClothes =
+      "https://images.unsplash.com/photo-1504198458649-3128b932f49e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String womanShoes =
+      "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String womanAccesories =
+      "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String kidsNew =
+      "https://images.unsplash.com/photo-1519554318711-aaf73ece6ff9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String kidsClothes =
+      "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String kidsShoes =
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String kidsAccesories =
+      "https://images.unsplash.com/photo-1601925240970-98447486fcdb?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String menNew =
+      "https://images.unsplash.com/photo-1555529771-835f59fc5efe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String menClothes =
+      "https://images.unsplash.com/photo-1467043237213-65f2da53396f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String menShoes =
+      "https://images.unsplash.com/photo-1661332445185-6e2ca6754fc4?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  static const String menAccesories =
+      "https://images.unsplash.com/photo-1700471299386-7a84be5cd423?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   static const String userImage = "assets/images/user_image.png";
   static const String tenPromo = "assets/images/10_promo.png";
   static const String fifteenPromo = "assets/images/15_promo.png";

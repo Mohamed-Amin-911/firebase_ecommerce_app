@@ -6,6 +6,7 @@ import 'package:ecommerce_app/model/user_model.dart';
 import 'package:ecommerce_app/view/screens/bag_screens/change_address_screen.dart';
 import 'package:ecommerce_app/view/screens/bag_screens/change_card_screen.dart';
 import 'package:ecommerce_app/view/screens/profile_screens/my_orders_screen.dart';
+import 'package:ecommerce_app/view/widgets/logout_button.dart';
 import 'package:ecommerce_app/view/widgets/profile_screen/profile_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,16 +34,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         body: Center(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: kColor.whiteColor,
-          elevation: 0,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: kColor.whiteColor,
+        //   elevation: 0,
+        // ),
+
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 18.h),
+              SizedBox(height: 65.h),
               Text(
                 "My profile",
                 style: appStyle(
@@ -151,6 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: "Settings",
                           subtitle: "Notifications, password",
                         ),
+                        const LogOutButton(),
                       ],
                     ),
             ],

@@ -19,19 +19,27 @@ class _LogOutButtonState extends State<LogOutButton> {
   final _auth = Auth();
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        await _auth.signOut();
-        SecureStorage.writeIsSaved("isSaved", "notSaved");
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()));
-      },
-      style: ElevatedButton.styleFrom(
-          backgroundColor: kColor.redColor, elevation: 0),
-      child: Text(
-        "LogOut",
-        style: appStyle(
-            fw: FontWeight.w500, size: 14.sp, color: kColor.whiteColor),
+    return SizedBox(
+      width: 400.w,
+      height: 36.h,
+      child: ElevatedButton(
+        onPressed: () async {
+          await _auth.signOut();
+          SecureStorage.writeIsSaved("isSaved", "notSaved");
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
+        },
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(color: kColor.redColor, width: 2.w),
+                borderRadius: BorderRadius.circular(30)),
+            backgroundColor: kColor.redColor,
+            elevation: 0),
+        child: Text(
+          "SIGN OUT",
+          style: appStyle(
+              fw: FontWeight.w600, size: 12.sp, color: kColor.whiteColor),
+        ),
       ),
     );
   }

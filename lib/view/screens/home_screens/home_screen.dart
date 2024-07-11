@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
               const FashionSaleWidget(),
               SizedBox(height: 5.h),
               const NewItemsWidget(),
-              SizedBox(height: 50.h),
             ],
           ),
         ),
