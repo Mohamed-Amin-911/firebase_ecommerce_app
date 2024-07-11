@@ -41,12 +41,19 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                product.name,
-                style: appStyle(
-                    fw: FontWeight.w500, size: 16.sp, color: kColor.textColor),
+              SizedBox(
+                width: 200.w,
+                child: Text(
+                  maxLines: 2,
+                  product.name,
+                  style: appStyle(
+                          fw: FontWeight.w500,
+                          size: 16.sp,
+                          color: kColor.textColor)
+                      .copyWith(overflow: TextOverflow.fade),
+                ),
               ),
-              SizedBox(height: 4.h),
+              SizedBox(height: 6.h),
               Row(
                 children: [
                   Text(

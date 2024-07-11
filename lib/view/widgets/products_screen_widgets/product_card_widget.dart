@@ -48,8 +48,18 @@ class _ProductCardState extends State<ProductCard> {
       child: Stack(
         children: [
           Container(
+            padding: EdgeInsets.only(bottom: 10.h),
             width: 164.w,
-            height: 290.h,
+            // height: 280.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.r),
+                boxShadow: [
+                  BoxShadow(
+                      color: kColor.text2Color.withOpacity(0.4),
+                      blurRadius: 8,
+                      spreadRadius: 2,
+                      blurStyle: BlurStyle.outer)
+                ]),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,8 +73,10 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                 ),
                 SizedBox(height: 7.h),
+                //rating
                 Row(
                   children: [
+                    SizedBox(width: 10.w),
                     RatingBar.builder(
                       initialRating: widget.rating,
                       minRating: 0,
@@ -89,36 +101,61 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                   ],
                 ),
-                Text(
-                  widget.store,
-                  style: appStyle(
-                      fw: FontWeight.w500,
-                      size: 15.sp,
-                      color: kColor.text2Color),
+
+                //store
+                Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    Text(
+                      widget.store,
+                      style: appStyle(
+                          fw: FontWeight.w500,
+                          size: 15.sp,
+                          color: kColor.text2Color),
+                    ),
+                  ],
                 ),
-                Text(
-                  widget.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: appStyle(
+
+                //name
+                Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    SizedBox(
+                      width: 145.w,
+                      child: Text(
+                        widget.name,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: appStyle(
+                                fw: FontWeight.w600,
+                                size: 16.sp,
+                                color: kColor.textColor)
+                            .copyWith(
+                          height: 1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+
+                //price
+                Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    Text(
+                      "${widget.price}\$",
+                      style: appStyle(
                           fw: FontWeight.w600,
                           size: 16.sp,
-                          color: kColor.textColor)
-                      .copyWith(
-                    height: 1,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "${widget.price}\$",
-                  style: appStyle(
-                      fw: FontWeight.w600,
-                      size: 16.sp,
-                      color: kColor.textColor),
+                          color: kColor.textColor),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
+          //favorite
           Positioned(
             right: 0.w,
             top: 150.h,

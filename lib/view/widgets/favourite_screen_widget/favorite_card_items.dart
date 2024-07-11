@@ -47,10 +47,17 @@ class FavouriteCardItems extends StatelessWidget {
               ),
               SizedBox(height: 2.h),
               //name
-              Text(
-                pp[index].name,
-                style: appStyle(
-                    fw: FontWeight.w600, size: 18.sp, color: kColor.textColor),
+              SizedBox(
+                width: 140.w,
+                child: Text(
+                  pp[index].name,
+                  maxLines: 3,
+                  style: appStyle(
+                          fw: FontWeight.w600,
+                          size: 18.sp,
+                          color: kColor.textColor)
+                      .copyWith(overflow: TextOverflow.ellipsis),
+                ),
               ),
               SizedBox(height: 15.h),
               //price
