@@ -7,6 +7,7 @@ import 'package:ecommerce_app/controller/provider/retrieve_products_provider.dar
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/screens/product_screens/product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -81,29 +82,59 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                 ],
               ),
               SizedBox(height: 14.h),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        int quantity = int.parse(cartItem["quantity"]!);
-                        quantity--;
-                        if (quantity == 0) {
-                          Provider.of<CartProvider>(context, listen: false)
-                              .removeFromCart(cartItem);
-                          Provider.of<CartProvider>(context, listen: false)
-                              .getProductsFromFavs(prods);
-                          Provider.of<CartProvider>(context, listen: false)
-                              .fetchCart(
-                            Provider.of<RetrieveProductProvider>(context,
-                                    listen: false)
-                                .products,
-                          );
+              SizedBox(
+                width: 200.w,
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          int quantity = int.parse(cartItem["quantity"]!);
+                          quantity--;
+                          if (quantity == 0) {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .removeFromCart(cartItem);
+                            Provider.of<CartProvider>(context, listen: false)
+                                .getProductsFromFavs(prods);
+                            Provider.of<CartProvider>(context, listen: false)
+                                .fetchCart(
+                              Provider.of<RetrieveProductProvider>(context,
+                                      listen: false)
+                                  .products,
+                            );
 
-                          Provider.of<PromoCodePRovider>(context, listen: false)
-                              .setDiscount(0);
-                          Provider.of<PromoCodePRovider>(context, listen: false)
-                              .setPromoCode("");
-                        } else {
+                            Provider.of<PromoCodePRovider>(context,
+                                    listen: false)
+                                .setDiscount(0);
+                            Provider.of<PromoCodePRovider>(context,
+                                    listen: false)
+                                .setPromoCode("");
+                          } else {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .changeQuantity(
+                                    cartItem["price"]!,
+                                    cartItem["id"]!,
+                                    cartItem["color"]!,
+                                    quantity,
+                                    cartItem["size"]!,
+                                    prods);
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.remove,
+                          color: kColor.text2Color,
+                        )),
+                    Text(
+                      " ${cartItem["quantity"]} ",
+                      style: appStyle(
+                          fw: FontWeight.w500,
+                          size: 16.sp,
+                          color: kColor.textColor),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          int quantity = int.parse(cartItem["quantity"]!);
+                          quantity++;
                           Provider.of<CartProvider>(context, listen: false)
                               .changeQuantity(
                                   cartItem["price"]!,
@@ -112,57 +143,28 @@ Padding cartItemCard(Product product, Map<String, dynamic> cartItem,
                                   quantity,
                                   cartItem["size"]!,
                                   prods);
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.remove,
-                        color: kColor.text2Color,
-                      )),
-                  Text(
-                    " ${cartItem["quantity"]} ",
-                    style: appStyle(
-                        fw: FontWeight.w500,
-                        size: 16.sp,
-                        color: kColor.textColor),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        int quantity = int.parse(cartItem["quantity"]!);
-                        quantity++;
-                        Provider.of<CartProvider>(context, listen: false)
-                            .changeQuantity(
-                                cartItem["price"]!,
-                                cartItem["id"]!,
-                                cartItem["color"]!,
-                                quantity,
-                                cartItem["size"]!,
-                                prods);
-                      },
-                      icon: const Icon(
-                        Icons.add,
-                        color: kColor.text2Color,
-                      )),
-                ],
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          color: kColor.text2Color,
+                        )),
+                    const Spacer(),
+                    Text(
+                      "${product.price.toInt().toString()}\$",
+                      style: appStyle(
+                          fw: FontWeight.w600,
+                          size: 16.sp,
+                          color: kColor.textColor),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
-          const Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.more_vert_rounded,
-                      color: kColor.text2Color)),
-              SizedBox(height: 30.h),
-              Text(
-                "${product.price.toInt().toString()}\$",
-                style: appStyle(
-                    fw: FontWeight.w600, size: 16.sp, color: kColor.textColor),
-              ),
-            ],
-          )
+          // IconButton(
+          //     onPressed: () {},
+          //     icon: const Icon(Icons.more_vert_rounded,
+          //         color: kColor.text2Color)),
         ],
       ),
     ),
