@@ -2,6 +2,7 @@ import 'package:ecommerce_app/view/widgets/home_screen_widgets/fashion_sale_widg
 import 'package:ecommerce_app/view/widgets/home_screen_widgets/new_items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ecommerce_app/constants/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kColor.whiteColor,
       body: Expanded(
         child: SingleChildScrollView(
           child: Column(

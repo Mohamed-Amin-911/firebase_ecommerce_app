@@ -18,6 +18,7 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kColor.whiteColor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {},
@@ -94,7 +95,9 @@ class _FilterScreenState extends State<FilterScreen> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                  color: kColor.whiteColor, width: 4),
+                                  color:
+                                      const Color.fromARGB(59, 155, 155, 155),
+                                  width: 4),
                               color: Color(int.parse(color))),
                         ),
                         selected: Provider.of<RetrieveProductProvider>(context,

@@ -13,6 +13,7 @@ class SubCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kColor.whiteColor,
       appBar: AppBar(
         backgroundColor: kColor.whiteColor,
         elevation: 0,

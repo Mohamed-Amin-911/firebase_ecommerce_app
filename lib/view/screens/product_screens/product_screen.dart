@@ -46,6 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
     final product = widget.product;
 
     return Scaffold(
+      backgroundColor: kColor.whiteColor,
       appBar: AppBar(
         backgroundColor: kColor.whiteColor,
         elevation: 10,

@@ -26,115 +26,135 @@ ListView orderItemsList(List<Product> products, Map<String, dynamic> order) {
         },
         child: Padding(
           padding: EdgeInsets.only(bottom: 24.h),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.r),
-                    bottomLeft: Radius.circular(20.r)),
-                child: CachedNetworkImage(
-                  width: 104.w,
-                  height: 104.h,
-                  fit: BoxFit.cover,
-                  imageUrl: product.image,
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.r),
+                boxShadow: [
+                  BoxShadow(
+                      color: kColor.text2Color.withOpacity(0.4),
+                      blurRadius: 8,
+                      spreadRadius: 2,
+                      blurStyle: BlurStyle.outer)
+                ]),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.r),
+                      bottomLeft: Radius.circular(20.r)),
+                  child: CachedNetworkImage(
+                    width: 104.w,
+                    // height: 104.h,
+                    fit: BoxFit.cover,
+                    imageUrl: product.image,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 ),
-              ),
-              SizedBox(width: 11.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    style: appStyle(
-                        fw: FontWeight.w600,
-                        size: 16.sp,
-                        color: kColor.textColor),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    product.category,
-                    style: appStyle(
-                        fw: FontWeight.w500,
-                        size: 13.sp,
-                        color: kColor.text2Color),
-                  ),
-                  SizedBox(height: 9.h),
-                  Row(
+                SizedBox(width: 11.w),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Color: ",
-                            style: appStyle(
-                                fw: FontWeight.w500,
-                                size: 13.sp,
-                                color: kColor.text2Color),
-                          ),
-                          Container(
-                            width: 20.w,
-                            height: 20.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: kColor.text2Color, width: 2),
-                                shape: BoxShape.circle,
-                                color: Color(int.parse(order["orderItems"]
-                                        [index]["color"]
-                                    .toString()))),
-                          ),
-                        ],
+                      SizedBox(
+                        width: 160.w,
+                        child: Text(
+                          product.name,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: appStyle(
+                              fw: FontWeight.w600,
+                              size: 16.sp,
+                              color: kColor.textColor),
+                        ),
                       ),
-                      SizedBox(width: 16.w),
-                      Row(
-                        children: [
-                          Text(
-                            "Size: ",
-                            style: appStyle(
-                                fw: FontWeight.w500,
-                                size: 13.sp,
-                                color: kColor.text2Color),
-                          ),
-                          Text(
-                            order["orderItems"][index]["size"],
-                            style: appStyle(
-                                fw: FontWeight.w500,
-                                size: 13.sp,
-                                color: kColor.textColor),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 13.h),
-                  Row(
-                    children: [
+                      SizedBox(height: 4.h),
                       Text(
-                        "Units: ",
+                        product.category,
                         style: appStyle(
                             fw: FontWeight.w500,
                             size: 13.sp,
                             color: kColor.text2Color),
                       ),
-                      Text(
-                        order["orderItems"][index]["quantity"],
-                        style: appStyle(
-                            fw: FontWeight.w500,
-                            size: 13.sp,
-                            color: kColor.textColor),
+                      SizedBox(height: 9.h),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Color: ",
+                                style: appStyle(
+                                    fw: FontWeight.w500,
+                                    size: 13.sp,
+                                    color: kColor.text2Color),
+                              ),
+                              Container(
+                                width: 20.w,
+                                height: 20.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: kColor.text2Color, width: 2),
+                                    shape: BoxShape.circle,
+                                    color: Color(int.parse(order["orderItems"]
+                                            [index]["color"]
+                                        .toString()))),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 16.w),
+                          Row(
+                            children: [
+                              Text(
+                                "Size: ",
+                                style: appStyle(
+                                    fw: FontWeight.w500,
+                                    size: 13.sp,
+                                    color: kColor.text2Color),
+                              ),
+                              Text(
+                                order["orderItems"][index]["size"],
+                                style: appStyle(
+                                    fw: FontWeight.w500,
+                                    size: 13.sp,
+                                    color: kColor.textColor),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 130.w),
-                      Text(
-                        "${order["orderItems"][index]["price"].toInt()}\$",
-                        style: appStyle(
-                            fw: FontWeight.w600,
-                            size: 14.sp,
-                            color: kColor.textColor),
-                      ),
+                      SizedBox(height: 13.h),
+                      Row(
+                        children: [
+                          Text(
+                            "Units: ",
+                            style: appStyle(
+                                fw: FontWeight.w500,
+                                size: 13.sp,
+                                color: kColor.text2Color),
+                          ),
+                          Text(
+                            order["orderItems"][index]["quantity"],
+                            style: appStyle(
+                                fw: FontWeight.w500,
+                                size: 13.sp,
+                                color: kColor.textColor),
+                          ),
+                          SizedBox(width: 130.w),
+                          Text(
+                            "${order["orderItems"][index]["price"].toInt()}\$",
+                            style: appStyle(
+                                fw: FontWeight.w600,
+                                size: 14.sp,
+                                color: kColor.textColor),
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              )
-            ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       );

@@ -17,6 +17,7 @@ class OrderCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 24.h),
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 8.w),
         padding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 19.h),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),

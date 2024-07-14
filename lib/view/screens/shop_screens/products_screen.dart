@@ -55,6 +55,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: kColor.whiteColor,
         appBar: AppBar(
           backgroundColor: kColor.whiteColor,
           elevation: 0,

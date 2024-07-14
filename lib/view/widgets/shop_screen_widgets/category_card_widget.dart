@@ -23,7 +23,14 @@ class CategoryCardWidget extends StatelessWidget {
         child: Container(
           width: 343.w,
           height: 100.h,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(8), boxShadow: [
+            BoxShadow(
+                color: kColor.text2Color.withOpacity(0.4),
+                blurRadius: 8,
+                spreadRadius: 2,
+                blurStyle: BlurStyle.outer)
+          ]),
           child: Row(
             children: [
               SizedBox(width: 39.w),

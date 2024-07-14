@@ -18,10 +18,20 @@ class FavouriteCardItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          color: kColor.whiteColor,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: [
+            BoxShadow(
+                color: kColor.text2Color.withOpacity(0.4),
+                blurRadius: 8,
+                spreadRadius: 2,
+                blurStyle: BlurStyle.outer)
+          ]),
       margin: EdgeInsets.only(bottom: 28.h),
-      padding: EdgeInsets.only(bottom: 30.h),
+      // padding: EdgeInsets.only(bottom: 30.h),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //image
           ClipRRect(
@@ -30,7 +40,7 @@ class FavouriteCardItems extends StatelessWidget {
             child: Image.network(
               pp[index].image,
               width: 104.w,
-              height: 104.h,
+              // height: 104.h,
               fit: BoxFit.cover,
             ),
           ),

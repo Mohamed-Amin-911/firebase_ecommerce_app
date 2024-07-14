@@ -24,6 +24,7 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
       length: 3,
       initialIndex: 0,
       child: Scaffold(
+        backgroundColor: kColor.whiteColor,
         appBar: AppBar(
           backgroundColor: kColor.whiteColor,
           elevation: 0,
